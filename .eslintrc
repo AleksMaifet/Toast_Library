@@ -1,0 +1,139 @@
+{
+  "extends": [
+    "airbnb",
+    "prettier",
+    "plugin:react/recommended"
+  ],
+  "env": {
+    "browser": true,
+    "jest": true
+  },
+  "parser": "@babel/eslint-parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "plugins": [
+    "react",
+    "prettier",
+    "react-hooks"
+  ],
+  "rules": {
+    "no-alert": "error",
+    "no-debugger": "warn",
+    "no-unused-vars": "off",
+    "no-shadow": "off",
+    "no-param-reassign": 0,
+    "arrow-parens": [
+      "error",
+      "as-needed"
+    ],
+    "no-restricted-syntax": [
+      "error",
+      "ForInStatement",
+      "LabeledStatement",
+      "WithStatement"
+    ],
+    "import/extensions": "off",
+    "no-continue": "off",
+    "import/export": 0,
+    "no-plusplus": "error",
+    "default-param-last": "off",
+    "consistent-return": "off",
+    "prettier/prettier": "error",
+    "no-magic-numbers": "off",
+    "no-constructor-return": "off",
+    "no-cond-assign": "off",
+    "no-use-before-define": "off",
+    "no-multiple-empty-lines": [
+      "error",
+      {
+        "max": 1
+      }
+    ],
+    "react/prop-types": 0,
+    "import/no-unresolved": 0,
+    "react/no-unescaped-entities": "off",
+    "import/no-anonymous-default-export": "off",
+    "react/display-name": "off",
+    "react/function-component-definition": [
+      2,
+      {
+        "namedComponents": "arrow-function",
+        "unnamedComponents": "arrow-function"
+      }
+    ],
+    "import/prefer-default-export": "off",
+    "import/order": [
+      "error",
+      {
+        "newlines-between": "always",
+        "pathGroupsExcludedImportTypes": [
+          "react"
+        ],
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        },
+        "groups": [
+          "builtin",
+          "external",
+          "parent",
+          "sibling",
+          "index"
+        ],
+        "pathGroups": [
+          {
+            "pattern": "@/**",
+            "group": "internal",
+            "position": "after"
+          },
+          {
+            "pattern": "./**",
+            "group": "internal",
+            "position": "after"
+          },
+          {
+            "pattern": "react",
+            "group": "external",
+            "position": "before"
+          }
+        ]
+      }
+    ],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": true,
+        "optionalDependencies": true,
+        "peerDependencies": true
+      }
+    ],
+    "object-curly-newline": [
+      "error",
+      {
+        "ObjectExpression": {
+          "multiline": true,
+          "minProperties": 1
+        }
+      }
+    ],
+    "react/react-in-jsx-scope": "off",
+    "react/destructuring-assignment": "error",
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [
+          ".jsx"
+        ]
+      }
+    ]
+  },
+  "ignorePatterns": [
+    "node_modules/"
+  ]
+}
+
