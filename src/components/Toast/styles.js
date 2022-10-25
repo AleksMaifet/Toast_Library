@@ -15,7 +15,8 @@ export const ToastWrapper = styled.main`
   animation: ${({ animation }) => handleAnimationToast(animation)} 2s;
 
   svg,
-  h2 {
+  h2,
+  p {
     fill: ${({ color }) => color};
     color: ${({ color }) => color};
   }
@@ -40,9 +41,16 @@ export const ToastButton = styled.button`
 
 export const ToastInfo = styled.div`
   width: ${theme.spaces[11]}%;
+  font-size: ${theme.textStyle.sm}rem;
+  text-transform: uppercase;
   overflow: hidden;
 `;
 
 export const ToastTitle = styled.h2`
+  text-align: center;
+`;
+
+export const ToastDescription = styled.p`
+  font-size: ${theme.textStyle.sm}rem;
   text-align: center;
 `;

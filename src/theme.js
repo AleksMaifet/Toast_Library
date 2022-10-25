@@ -42,7 +42,6 @@ const textStyle = {
 };
 
 /// Animation
-
 const topAnimation = keyframes`
   from {
     transform: translateY(-100%);
@@ -63,7 +62,6 @@ const bottomAnimation = keyframes`
     opacity: 1;
   }
 `;
-
 const leftAnimation = keyframes`
   from {
     transform: translateX(-100%);
@@ -74,7 +72,6 @@ const leftAnimation = keyframes`
     opacity: 1;
   }
 `;
-
 const rightAnimation = keyframes`
   from {
     transform: translateX(100%);

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Toast from '@/components/Toast';
+import ToastExample from '@/components/ToastExample';
 import { DEFAULT_TITLE, TOAST_ANIMATION } from '@/constants';
 
 const { SUCCESS, ERROR, INFO, WARNING } = DEFAULT_TITLE;
@@ -9,7 +9,7 @@ const { TOP, BOTTOM, LEFT, RIGHT } = TOAST_ANIMATION;
 
 export default {
   title: 'Toast',
-  component: Toast,
+  component: ToastExample,
   argTypes: {
     toastType: {
       control: {
@@ -32,6 +32,11 @@ export default {
         type: 'text',
       },
     },
+    toastContent: {
+      control: {
+        type: 'text',
+      },
+    },
     animation: {
       control: {
         type: 'inline-radio',
@@ -42,13 +47,14 @@ export default {
 };
 
 // eslint-disable-next-line
-const Template = arg => <Toast {...arg} />;
+const Template = arg => <ToastExample {...arg} />;
 
-export const ToastExample = Template.bind({});
+export const ToastTemplate = Template.bind({});
 
-ToastExample.args = {
+ToastTemplate.args = {
   toastType: SUCCESS,
   toastTitle: '',
+  toastContent: '',
   toastColor: '',
   toastBackgroundColor: '',
   animation: TOP,

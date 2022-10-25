@@ -1,20 +1,28 @@
 import React from 'react';
 
+import PropTypes from 'prop-types';
+
 import { ReactComponent as IconClose } from '@/assets/svg/iconClose.svg';
 import { Icon } from '@/components/Icon';
 import {
   ToastButton,
   ToastButtonWrapper,
+  ToastDescription,
   ToastIconWrapper,
   ToastInfo,
   ToastTitle,
   ToastWrapper,
 } from '@/components/Toast/styles';
-import { handleComponentStory } from '@/utils';
 
-const Toast = ({ toastType, ...replacement }) => {
-  const { currentTitle, currentColor, currentBackgroundColor, icon, animation } =
-    handleComponentStory(toastType, replacement);
+const Toast = ({ value }) => {
+  const {
+    currentTitle,
+    toastContent,
+    currentColor,
+    currentBackgroundColor,
+    animation,
+    icon,
+  } = value;
 
   return (
     <ToastWrapper
@@ -27,6 +35,7 @@ const Toast = ({ toastType, ...replacement }) => {
       </ToastIconWrapper>
       <ToastInfo>
         <ToastTitle>{currentTitle}</ToastTitle>
+        {toastContent && <ToastDescription>{toastContent}</ToastDescription>}
       </ToastInfo>
       <ToastButtonWrapper>
         <ToastButton>
@@ -36,5 +45,18 @@ const Toast = ({ toastType, ...replacement }) => {
     </ToastWrapper>
   );
 };
+
+Toast.propTypes = {
+  value: PropTypes.objectOf(
+    PropTypes.shape({
+      icon: PropTypes.func.isRequired,
+      currentTitle: PropTypes.string.isRequired,
+      toastContent: PropTypes.string.isRequired,
+      currentColor: PropTypes.string.isRequired,
+      currentBackgroundColor: PropTypes.string.isRequired,
+      animation: PropTypes.string.isRequired,
+    }),
+  ),
+}.isRequired;
 
 export default Toast;
