@@ -4,7 +4,7 @@ import { ReactComponent as IconSuccess } from '@/assets/svg/iconSuccess.svg';
 import { ReactComponent as IconWarning } from '@/assets/svg/iconWarning.svg';
 import theme from '@/theme';
 
-const DEFAULT_TITLE = {
+export const DEFAULT_TITLE = {
   SUCCESS: 'Success',
   WARNING: 'Warning',
   INFO: 'Info',
@@ -16,25 +16,25 @@ const { SUCCESS, ERROR, INFO, WARNING } = DEFAULT_TITLE;
 const { white, green, black, yellow, pink, error } = theme.Colors;
 
 export const DEFAULT_TOASTS = {
-  success: {
+  Success: {
     title: SUCCESS,
     textColor: white,
     backgroundColor: green,
     icon: IconSuccess,
   },
-  warning: {
+  Warning: {
     title: WARNING,
     textColor: black,
     backgroundColor: yellow,
     icon: IconWarning,
   },
-  inform: {
+  Info: {
     title: INFO,
     textColor: white,
     backgroundColor: pink,
     icon: IconInfo,
   },
-  error: {
+  Error: {
     title: ERROR,
     textColor: white,
     backgroundColor: error,

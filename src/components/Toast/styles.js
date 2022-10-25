@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import theme from '@/theme';
+import { handleAnimationToast } from '@/utils';
 
 export const ToastWrapper = styled.main`
   display: flex;
@@ -9,9 +10,9 @@ export const ToastWrapper = styled.main`
   height: ${theme.size.xs}px;
   width: ${theme.size.small}px;
   padding: ${theme.spaces[3]}px;
-  margin: ${({ margins }) => margins || 20}px;
   border-radius: 7px;
   background-color: ${({ backgroundColor }) => backgroundColor};
+  animation: ${({ animation }) => handleAnimationToast(animation)} 2s;
 
   svg,
   h2 {

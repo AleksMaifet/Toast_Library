@@ -1,7 +1,11 @@
 import React from 'react';
 
 import Toast from '@/components/Toast';
-import { DEFAULT_TOASTS } from '@/constants';
+import { DEFAULT_TITLE, TOAST_ANIMATION } from '@/constants';
+
+const { SUCCESS, ERROR, INFO, WARNING } = DEFAULT_TITLE;
+
+const { TOP, BOTTOM, LEFT, RIGHT } = TOAST_ANIMATION;
 
 export default {
   title: 'Toast',
@@ -10,53 +14,42 @@ export default {
     toastType: {
       control: {
         type: 'inline-radio',
-        options: ['err', 'warn', 'ok', 'info'],
+        options: [ERROR, WARNING, SUCCESS, INFO],
       },
     },
-    color: {
+    toastColor: {
       control: {
         type: 'color',
       },
     },
-    backgroundColor: {
+    toastBackgroundColor: {
       control: {
         type: 'color',
       },
     },
-    delay: {
-      control: {
-        type: 'number',
-      },
-    },
-    animationType: {
-      control: {
-        type: 'radio',
-      },
-    },
-    content: {
+    toastTitle: {
       control: {
         type: 'text',
       },
     },
-    margins: {
+    animation: {
       control: {
-        type: 'text',
+        type: 'inline-radio',
+        options: [TOP, BOTTOM, LEFT, RIGHT],
       },
     },
   },
 };
 
-const {
-  success: { title, icon, textColor, backgroundColor },
-} = DEFAULT_TOASTS;
-
+// eslint-disable-next-line
 const Template = arg => <Toast {...arg} />;
 
 export const ToastExample = Template.bind({});
 
 ToastExample.args = {
-  title,
-  icon,
-  textColor,
-  backgroundColor,
+  toastType: SUCCESS,
+  toastTitle: '',
+  toastColor: '',
+  toastBackgroundColor: '',
+  animation: TOP,
 };

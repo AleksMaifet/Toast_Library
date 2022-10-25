@@ -10,21 +10,31 @@ import {
   ToastTitle,
   ToastWrapper,
 } from '@/components/Toast/styles';
+import { handleComponentStory } from '@/utils';
 
-const Toast = ({ title, icon, backgroundColor, textColor }) => (
-  <ToastWrapper backgroundColor={backgroundColor} color={textColor}>
-    <ToastIconWrapper>
-      <Icon icon={icon} />
-    </ToastIconWrapper>
-    <ToastInfo>
-      <ToastTitle>{title}</ToastTitle>
-    </ToastInfo>
-    <ToastButtonWrapper>
-      <ToastButton>
-        <IconClose />
-      </ToastButton>
-    </ToastButtonWrapper>
-  </ToastWrapper>
-);
+const Toast = ({ toastType, ...replacement }) => {
+  const { currentTitle, currentColor, currentBackgroundColor, icon, animation } =
+    handleComponentStory(toastType, replacement);
+
+  return (
+    <ToastWrapper
+      backgroundColor={currentBackgroundColor}
+      color={currentColor}
+      animation={animation}
+    >
+      <ToastIconWrapper>
+        <Icon icon={icon} />
+      </ToastIconWrapper>
+      <ToastInfo>
+        <ToastTitle>{currentTitle}</ToastTitle>
+      </ToastInfo>
+      <ToastButtonWrapper>
+        <ToastButton>
+          <IconClose />
+        </ToastButton>
+      </ToastButtonWrapper>
+    </ToastWrapper>
+  );
+};
 
 export default Toast;

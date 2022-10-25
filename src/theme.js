@@ -1,3 +1,5 @@
+import { keyframes } from 'styled-components';
+
 const fontFamily = 'sans-serif';
 const fontSizeBase = '10px';
 
@@ -39,6 +41,51 @@ const textStyle = {
   xll: 5,
 };
 
+/// Animation
+
+const topAnimation = keyframes`
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+`;
+const bottomAnimation = keyframes`
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+`;
+
+const leftAnimation = keyframes`
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+`;
+
+const rightAnimation = keyframes`
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+`;
+
 export default {
   fontFamily,
   fontSizeBase,
@@ -47,4 +94,8 @@ export default {
   opacity,
   textStyle,
   Colors,
+  topAnimation,
+  bottomAnimation,
+  leftAnimation,
+  rightAnimation,
 };
