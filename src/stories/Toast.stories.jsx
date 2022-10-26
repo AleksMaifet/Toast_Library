@@ -43,6 +43,16 @@ export default {
         options: [TOP, BOTTOM, LEFT, RIGHT],
       },
     },
+    autoClose: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    autoCloseTime: {
+      control: {
+        type: 'number',
+      },
+    },
   },
 };
 
@@ -58,5 +68,6 @@ ToastTemplate.args = {
   toastColor: '',
   toastBackgroundColor: '',
   animation: TOP,
-  deleteTime: 1,
+  autoClose: false,
+  autoCloseTime: 2,
 };

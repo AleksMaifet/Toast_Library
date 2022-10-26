@@ -13,7 +13,7 @@ class ToastManager {
     ToastManager.singleton = this;
 
     this.toastList = [];
-    this.toast = {};
+    this.toast = null;
     this.subscriber = new Set();
     this.timerId = null;
   }
@@ -21,7 +21,10 @@ class ToastManager {
   createToast(toastType, properties) {
     this.toast = handlePropertiesToast(toastType, properties);
     this.addToast();
-    this.autoRemoveToast(this.toast.currentDeleteTime);
+    const { currentDeleteTime, autoClose } = this.toast;
+    if (autoClose) {
+      this.autoRemoveToast(currentDeleteTime);
+    }
   }
 
   addToast() {
@@ -43,10 +46,7 @@ class ToastManager {
 
   autoRemoveToast(delay) {
     clearInterval(this.timerId);
-
-    this.timerId = setInterval(() => {
-      this.removeToast();
-    }, delay);
+    this.timerId = setInterval(() => this.removeToast(), delay);
   }
 
   worker() {

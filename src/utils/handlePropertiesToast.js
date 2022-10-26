@@ -1,5 +1,7 @@
 import { DEFAULT_TOASTS } from '@/constants';
 
+const TIMEOUT_SETTING_VALUE = 1000;
+
 export const handlePropertiesToast = (toastType, properties) => {
   const id = new Date().getTime().toString();
 
@@ -11,13 +13,14 @@ export const handlePropertiesToast = (toastType, properties) => {
     toastBackgroundColor,
     animation,
     toastContent,
-    deleteTime,
+    autoClose,
+    autoCloseTime,
   } = properties;
 
   const currentTitle = toastTitle || title;
   const currentColor = toastColor || textColor;
   const currentBackgroundColor = toastBackgroundColor || backgroundColor;
-  const currentDeleteTime = deleteTime * 1000;
+  const currentDeleteTime = autoCloseTime * TIMEOUT_SETTING_VALUE;
 
   return {
     id,
@@ -27,6 +30,7 @@ export const handlePropertiesToast = (toastType, properties) => {
     currentBackgroundColor,
     animation,
     toastContent,
+    autoClose,
     currentDeleteTime,
   };
 };
