@@ -1,8 +1,10 @@
-import { useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 
 import ReactDOM from 'react-dom';
 
-export const Portal = ({ children }) => {
+import { types } from '@/components/Portal/types';
+
+const Portal = ({ children }) => {
   const [container] = useState(() => document.createElement('div'));
 
   useEffect(() => {
@@ -14,3 +16,7 @@ export const Portal = ({ children }) => {
 
   return ReactDOM.createPortal(children, container);
 };
+
+export default memo(Portal);
+
+Portal.propTypes = types;

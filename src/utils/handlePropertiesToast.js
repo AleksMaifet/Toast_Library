@@ -5,12 +5,19 @@ export const handlePropertiesToast = (toastType, properties) => {
 
   const { title, textColor, backgroundColor, icon } = DEFAULT_TOASTS[toastType];
 
-  const { toastTitle, toastColor, toastBackgroundColor, animation, toastContent } =
-    properties;
+  const {
+    toastTitle,
+    toastColor,
+    toastBackgroundColor,
+    animation,
+    toastContent,
+    deleteTime,
+  } = properties;
 
   const currentTitle = toastTitle || title;
   const currentColor = toastColor || textColor;
   const currentBackgroundColor = toastBackgroundColor || backgroundColor;
+  const currentDeleteTime = deleteTime * 1000;
 
   return {
     id,
@@ -20,5 +27,6 @@ export const handlePropertiesToast = (toastType, properties) => {
     currentBackgroundColor,
     animation,
     toastContent,
+    currentDeleteTime,
   };
 };

@@ -1,29 +1,36 @@
-import { createContext, useEffect, useMemo, useState } from 'react';
+import { createContext, memo, useEffect, useMemo, useState } from 'react';
 
+import { types } from '@/components/Provider/types';
 import { toastManager } from '@/utils';
 
 export const ToastContext = createContext({});
 
-export const Provider = ({ children }) => {
-  const [toastList, setToastList] = useState(toastManager.toastList);
+const Provider = ({ children }) => {
+  const [toastList, setToastList] = useState([]);
 
-  const handleToastList = toast => {
-    setToastList(prev => [...prev, toast]);
+  const handleToastList = toastList => {
+    setToastList(toastList);
+  };
+
+  const handleRemoveToast = id => {
+    toastManager.removeToast(id);
   };
 
   useEffect(() => {
-    toastManager.subscribe('subscribe', handleToastList);
-    // return () => {
-    //   toastManager.unsubscribe()
-    // }
+    toastManager.watcher(handleToastList);
   }, []);
 
   const value = useMemo(
     () => ({
       toastList,
+      handleRemoveToast,
     }),
     [toastList],
   );
 
   return <ToastContext.Provider value={value}>{children}</ToastContext.Provider>;
 };
+
+export default memo(Provider);
+
+Provider.propTypes = types;

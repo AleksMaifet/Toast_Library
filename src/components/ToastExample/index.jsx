@@ -1,16 +1,13 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
-import { Provider } from '@/components/Provider/Provider';
+import ToastContainer from '@/components/ToastContainer';
 import { ExampleButton, ExampleWrapperButton } from '@/components/ToastExample/styles';
-import ToastList from '@/components/ToastList';
 import { EXAMPLE_BUTTON_TITLE } from '@/constants';
 import { toastManager } from '@/utils';
 
 const ToastExample = ({ toastType, ...properties }) => (
   <>
-    <Provider>
-      <ToastList />
-    </Provider>
+    <ToastContainer />
     <ExampleWrapperButton>
       <ExampleButton onClick={() => toastManager.createToast(toastType, properties)}>
         {EXAMPLE_BUTTON_TITLE}

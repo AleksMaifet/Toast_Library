@@ -12,7 +12,7 @@ export const ToastWrapper = styled.main`
   padding: ${theme.spaces[3]}px;
   border-radius: 7px;
   background-color: ${({ backgroundColor }) => backgroundColor};
-  animation: ${({ animation }) => handleAnimationToast(animation)} 2s;
+  animation: ${({ animation }) => handleAnimationToast(animation)} 1s;
 
   svg,
   h2,

@@ -1,6 +1,12 @@
-import React from 'react';
+import React, { memo } from 'react';
 
-export const Icon = ({ icon }) => {
+import { types } from '@/components/Icon/types';
+
+const Icon = ({ icon }) => {
   const Icon = icon;
   return <Icon />;
 };
+
+export default memo(Icon);
+
+Icon.propTypes = types;

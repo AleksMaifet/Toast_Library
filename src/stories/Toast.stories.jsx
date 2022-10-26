@@ -58,4 +58,5 @@ ToastTemplate.args = {
   toastColor: '',
   toastBackgroundColor: '',
   animation: TOP,
+  deleteTime: 1,
 };

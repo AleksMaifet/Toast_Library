@@ -1,9 +1,7 @@
-import React from 'react';
-
-import PropTypes from 'prop-types';
+import React, { memo } from 'react';
 
 import { ReactComponent as IconClose } from '@/assets/svg/iconClose.svg';
-import { Icon } from '@/components/Icon';
+import Icon from '@/components/Icon';
 import {
   ToastButton,
   ToastButtonWrapper,
@@ -13,8 +11,9 @@ import {
   ToastTitle,
   ToastWrapper,
 } from '@/components/Toast/styles';
+import { types } from '@/components/Toast/types';
 
-const Toast = ({ value }) => {
+const Toast = ({ value, onCloseToast }) => {
   const {
     currentTitle,
     toastContent,
@@ -38,7 +37,7 @@ const Toast = ({ value }) => {
         {toastContent && <ToastDescription>{toastContent}</ToastDescription>}
       </ToastInfo>
       <ToastButtonWrapper>
-        <ToastButton>
+        <ToastButton onClick={onCloseToast}>
           <IconClose />
         </ToastButton>
       </ToastButtonWrapper>
@@ -46,17 +45,6 @@ const Toast = ({ value }) => {
   );
 };
 
-Toast.propTypes = {
-  value: PropTypes.objectOf(
-    PropTypes.shape({
-      icon: PropTypes.func.isRequired,
-      currentTitle: PropTypes.string.isRequired,
-      toastContent: PropTypes.string.isRequired,
-      currentColor: PropTypes.string.isRequired,
-      currentBackgroundColor: PropTypes.string.isRequired,
-      animation: PropTypes.string.isRequired,
-    }),
-  ),
-}.isRequired;
+Toast.propTypes = types;
 
-export default Toast;
+export default memo(Toast);
