@@ -1,10 +1,10 @@
 import React from 'react';
 
 import ToastExample from '@/components/ToastExample';
-import { DEFAULT_TITLE, TOAST_ANIMATION } from '@/constants';
+import { DEFAULT_TITLE, TOAST_ANIMATION, TOAST_POSITION } from '@/constants';
 
 const { SUCCESS, ERROR, INFO, WARNING } = DEFAULT_TITLE;
-
+const { TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, BOTTOM_RIGHT } = TOAST_POSITION;
 const { TOP, BOTTOM, LEFT, RIGHT } = TOAST_ANIMATION;
 
 export default {
@@ -43,6 +43,12 @@ export default {
         options: [TOP, BOTTOM, LEFT, RIGHT],
       },
     },
+    position: {
+      control: {
+        type: 'inline-radio',
+        options: [TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, BOTTOM_RIGHT],
+      },
+    },
     autoClose: {
       control: {
         type: 'boolean',
@@ -68,6 +74,7 @@ ToastTemplate.args = {
   toastColor: '',
   toastBackgroundColor: '',
   animation: TOP,
+  position: TOP_LEFT,
   autoClose: false,
   autoCloseTime: 2,
 };

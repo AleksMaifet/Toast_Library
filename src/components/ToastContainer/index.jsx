@@ -4,6 +4,7 @@ import { ErrorBoundary } from '@/components/ErrorBoundary';
 import Portal from '@/components/Portal';
 import Provider, { ToastContext } from '@/components/Provider';
 import Toast from '@/components/Toast';
+import { WrapperToast } from '@/components/ToastContainer/styles';
 
 const ToastContainer = () => (
   <ErrorBoundary>
@@ -12,7 +13,9 @@ const ToastContainer = () => (
         <ToastContext.Consumer>
           {({ toastList, handleRemoveToast }) =>
             toastList.map(({ id, ...info }) => (
-              <Toast key={id} value={info} onCloseToast={() => handleRemoveToast(id)} />
+              <WrapperToast key={id} position={info.position}>
+                <Toast value={info} onCloseToast={() => handleRemoveToast(id)} />
+              </WrapperToast>
             ))
           }
         </ToastContext.Consumer>

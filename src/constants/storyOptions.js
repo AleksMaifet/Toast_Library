@@ -1,8 +1,8 @@
 export const TOAST_POSITION = {
-  TOP_RIGHT: 'top-right',
-  TOP_LEFT: 'top-left',
-  BOTTOM_RIGHT: 'bottom-right',
-  BOTTOM_LEFT: 'bottom-left',
+  TOP_RIGHT: 'Top-right',
+  TOP_LEFT: 'Top-left',
+  BOTTOM_RIGHT: 'Bottom-right',
+  BOTTOM_LEFT: 'Bottom-left',
 };
 
 export const TOAST_ANIMATION = {
