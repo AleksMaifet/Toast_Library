@@ -5,7 +5,7 @@ import { toastManager } from '@/utils';
 
 export const ToastContext = createContext({});
 
-const Provider = ({ children }) => {
+const Index = ({ children }) => {
   const [toastList, setToastList] = useState([]);
 
   const handleToastList = toastList => {
@@ -36,6 +36,6 @@ const Provider = ({ children }) => {
   return <ToastContext.Provider value={value}>{children}</ToastContext.Provider>;
 };
 
-export default memo(Provider);
+export default memo(Index);
 
-Provider.propTypes = types;
+Index.propTypes = types;

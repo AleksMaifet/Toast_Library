@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useRef } from 'react';
 
 import { ReactComponent as IconClose } from '@/assets/svg/iconClose.svg';
 import Icon from '@/components/Icon';
@@ -23,11 +23,26 @@ const Toast = ({ value, onCloseToast }) => {
     icon,
   } = value;
 
+  const ref = useRef(null);
+
+  const handleDragStartEvent = e => {
+    ref.current = e.pageX;
+  };
+
+  const handleDragEndEvent = e => {
+    if (e.pageX !== ref.current) {
+      onCloseToast();
+    }
+  };
+
   return (
     <ToastWrapper
       backgroundColor={currentBackgroundColor}
       color={currentColor}
       animation={animation}
+      draggable
+      onDragStart={handleDragStartEvent}
+      onDragEnd={handleDragEndEvent}
     >
       <ToastIconWrapper>
         <Icon icon={icon} />

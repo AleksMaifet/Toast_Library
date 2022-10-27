@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { ErrorBoundary } from '@/components/ErrorBoundary';
-import Portal from '@/components/Portal/Portal';
-import Provider, { ToastContext } from '@/components/Provider/Provider';
+import Portal from '@/components/Portal';
+import Provider, { ToastContext } from '@/components/Provider';
 import Toast from '@/components/Toast';
 
 const ToastContainer = () => (

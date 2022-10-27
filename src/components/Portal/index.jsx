@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 
 import { types } from '@/components/Portal/types';
 
-const Portal = ({ children }) => {
+const Index = ({ children }) => {
   const [container] = useState(() => document.createElement('div'));
 
   useEffect(() => {
@@ -17,6 +17,6 @@ const Portal = ({ children }) => {
   return ReactDOM.createPortal(children, container);
 };
 
-export default memo(Portal);
+export default memo(Index);
 
-Portal.propTypes = types;
+Index.propTypes = types;
