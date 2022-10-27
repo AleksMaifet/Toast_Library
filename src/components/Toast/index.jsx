@@ -14,6 +14,7 @@ import {
 import { types } from '@/components/Toast/types';
 
 const Toast = ({ value, onCloseToast }) => {
+
   const {
     currentTitle,
     toastContent,

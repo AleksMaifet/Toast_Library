@@ -23,7 +23,7 @@ const Provider = ({ children }) => {
         clearInterval(toastManager.timerId);
       }
     };
-  }, [toastList]);
+  });
 
   const value = useMemo(
     () => ({
