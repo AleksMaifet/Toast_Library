@@ -3,7 +3,7 @@ import React, { memo, useRef } from 'react';
 import IconClose from '@/assets/svg/iconClose.svg';
 import Icon from '@/components/Icon';
 import {
-  ToastButton,
+  ToastButtonContainer,
   ToastButtonWrapper,
   ToastDescription,
   ToastIconWrapper,
@@ -51,11 +51,11 @@ const Toast = ({ value, onCloseToast }) => {
         <ToastTitle>{currentTitle}</ToastTitle>
         {toastContent && <ToastDescription>{toastContent}</ToastDescription>}
       </ToastInfo>
-      <ToastButtonWrapper>
-        <ToastButton onClick={onCloseToast}>
-          <IconClose />
-        </ToastButton>
-      </ToastButtonWrapper>
+      <ToastButtonContainer>
+        <ToastButtonWrapper>
+          <IconClose onClick={onCloseToast} />
+        </ToastButtonWrapper>
+      </ToastButtonContainer>
     </ToastWrapper>
   );
 };

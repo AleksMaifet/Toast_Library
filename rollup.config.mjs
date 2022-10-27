@@ -17,11 +17,18 @@ const projectRootDir = path.resolve(__dirname);
 
 export default {
   input: 'src/index.jsx',
-  output: {
-    file: 'dist/bundle.js',
-    format: 'cjs',
-    sourcemap: true,
-  },
+  output: [
+    {
+      file: 'dist/bundle.js',
+      format: 'cjs',
+      sourcemap: true,
+    },
+    {
+      file: 'dist/bundle.esm.js',
+      format: 'esm',
+      sourcemap: true,
+    },
+  ],
   plugins: [
     peerDepsExternal(),
     resolve({ extensions: ['.jsx', '.js'] }),

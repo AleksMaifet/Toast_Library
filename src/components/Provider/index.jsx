@@ -1,6 +1,7 @@
-import { createContext, memo, useEffect, useMemo, useState } from 'react';
+import React, { createContext, memo, useEffect, useMemo, useState } from 'react';
 
 import { types } from '@/components/Provider/types';
+import { ACTION } from '@/constants';
 import { toastManager } from '@/utils';
 
 export const ToastContext = createContext({});
@@ -17,7 +18,7 @@ const Provider = ({ children }) => {
   };
 
   useEffect(() => {
-    toastManager.watcher(handleToastList);
+    toastManager.watcher(ACTION, handleToastList);
     return () => {
       if (!toastManager.toastList.length) {
         clearInterval(toastManager.timerId);

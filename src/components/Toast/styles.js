@@ -7,8 +7,8 @@ export const ToastWrapper = styled.main`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  height: ${theme.size.xs}px;
   width: ${theme.size.small}px;
+  height: ${theme.spaces[11]}px;
   padding: ${theme.spaces[3]}px;
   border-radius: 7px;
   background-color: ${({ backgroundColor }) => backgroundColor};
@@ -27,16 +27,19 @@ export const ToastIconWrapper = styled.div`
   width: ${theme.spaces[8]}px;
 `;
 
-export const ToastButtonWrapper = styled.div`
-  height: ${theme.spaces[14]}%;
+export const ToastButtonContainer = styled.div`
+  width: ${theme.spaces[3]}px;
+  height: ${theme.spaces[8]}px;
 `;
 
-export const ToastButton = styled.button`
-  width: ${theme.spaces[5]}px;
-  height: ${theme.spaces[5]}px;
-  background-color: transparent;
-  border: none;
+export const ToastButtonWrapper = styled.div`
+  height: ${theme.spaces[3]}px;
   cursor: pointer;
+  transition: ease 0.3s;
+
+  &:hover {
+    transform: scale(${theme.opacity.opacity50});
+  }
 `;
 
 export const ToastInfo = styled.div`
@@ -47,10 +50,11 @@ export const ToastInfo = styled.div`
 `;
 
 export const ToastTitle = styled.h2`
+  font-size: ${theme.textStyle.md}rem;
   text-align: center;
 `;
 
 export const ToastDescription = styled.p`
-  font-size: ${theme.textStyle.sm}rem;
+  font-size: ${theme.textStyle.md}rem;
   text-align: center;
 `;

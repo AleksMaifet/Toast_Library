@@ -1,7 +1,8 @@
 {
-  "name": "ToastNotificationLibrary",
-  "version": "0.0.1",
+  "name": "@AleksMaifet/Toast_Library",
+  "version": "0.0.3",
   "main": "dist/bundle.js",
+  "module": "dist/bundle.esm.js",
   "files": [
     "dist"
   ],
@@ -62,5 +63,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "styled-components": "^5.3.6"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/AleksMaifet"
   }
 }

@@ -14,7 +14,7 @@ class ToastManager {
 
     this.toastList = [];
     this.toast = null;
-    this.subscriber = new Set();
+    this.subscriber = new Map();
     this.timerId = null;
   }
 
@@ -55,8 +55,10 @@ class ToastManager {
     });
   }
 
-  watcher(callback) {
-    this.subscriber.add(callback);
+  watcher(action, callback) {
+    if (!this.subscriber.has(action)) {
+      this.subscriber.set(action, callback);
+    }
   }
 }
 
