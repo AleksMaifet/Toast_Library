@@ -8,7 +8,7 @@ import { WrapperToast } from '@/components/ToastContainer/styles';
 import GlobalStyles from '@/globalStyles';
 
 const ToastContainer = () => {
-  const handleDeleteToast = cb => id => () => {
+  const handleRemoveToastHelper = cb => id => () => {
     cb(id);
   };
 
@@ -22,7 +22,7 @@ const ToastContainer = () => {
                 <WrapperToast key={id} position={info.position}>
                   <Toast
                     value={info}
-                    onCloseToast={handleDeleteToast(handleRemoveToast)(id)}
+                    onCloseToast={handleRemoveToastHelper(handleRemoveToast)(id)}
                   />
                 </WrapperToast>
               ))
