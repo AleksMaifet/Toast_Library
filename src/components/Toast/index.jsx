@@ -1,6 +1,6 @@
 import React, { memo, useRef } from 'react';
 
-import { ReactComponent as IconClose } from '@/assets/svg/iconClose.svg';
+import IconClose from '@/assets/svg/iconClose.svg';
 import Icon from '@/components/Icon';
 import {
   ToastButton,
@@ -14,7 +14,6 @@ import {
 import { types } from '@/components/Toast/types';
 
 const Toast = ({ value, onCloseToast }) => {
-
   const {
     currentTitle,
     toastContent,

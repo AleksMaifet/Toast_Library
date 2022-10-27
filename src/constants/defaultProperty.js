@@ -1,7 +1,7 @@
-import { ReactComponent as IconError } from '@/assets/svg/iconError.svg';
-import { ReactComponent as IconInfo } from '@/assets/svg/iconInfo.svg';
-import { ReactComponent as IconSuccess } from '@/assets/svg/iconSuccess.svg';
-import { ReactComponent as IconWarning } from '@/assets/svg/iconWarning.svg';
+import IconError from '@/assets/svg/iconError.svg';
+import IconInfo from '@/assets/svg/iconInfo.svg';
+import IconSuccess from '@/assets/svg/iconSuccess.svg';
+import IconWarning from '@/assets/svg/iconWarning.svg';
 import theme from '@/theme';
 
 export const DEFAULT_TITLE = {

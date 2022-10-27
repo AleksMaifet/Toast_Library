@@ -12,26 +12,20 @@ module.exports = {
   'framework': '@storybook/react',
   'webpackFinal': async (config) => {
 
-    const assetRule = config.module.rules.find(({ test }) => test.test('.svg'));
+    config.resolve.alias['@'] = path.resolve(__dirname, '../src');
 
-    const assetLoader = {
-      loader: assetRule.loader,
-      options: assetRule.options || assetRule.query,
-    };
+    config.resolve.alias['@components'] = path.resolve(__dirname, '../src/components');
 
-    config.module.rules.unshift({
+    const fileLoaderRule = config.module.rules.find(rule => rule.test && rule.test.test('.svg'));
+
+    fileLoaderRule.exclude = /\.svg$/;
+
+    config.module.rules.push({
       test: /\.svg$/,
-      use: ['@svgr/webpack', assetLoader],
+      enforce: 'pre',
+      loader: require.resolve('@svgr/webpack'),
     });
 
-    return {
-      ...config,
-      resolve: {
-        extensions: ['*', '.js', '.jsx'],
-        alias: {
-          '@': path.resolve(__dirname, '../src'),
-        },
-      },
-    };
+    return config;
   },
 };
