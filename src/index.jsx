@@ -1,5 +1,3 @@
-import ReactDOM from 'react-dom';
+import ToastExample from '@/components/ToastExample';
 
-import { App } from '@/App';
-
-ReactDOM.render(<App />, document.getElementById('root'));
+export { ToastExample };
