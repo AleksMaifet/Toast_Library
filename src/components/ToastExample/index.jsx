@@ -3,11 +3,11 @@ import React from 'react';
 import ToastContainer from '@/components/ToastContainer';
 import { ExampleButton, ExampleWrapperButton } from '@/components/ToastExample/styles';
 import { EXAMPLE_BUTTON_TITLE } from '@/constants';
-import { toastManager } from '@/utils';
+import { handleToastService } from '@/utils';
 
 const ToastExample = properties => {
   const onClick = () => {
-    toastManager.createToast(properties);
+    handleToastService(properties);
   };
 
   return (

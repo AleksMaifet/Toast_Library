@@ -13,7 +13,6 @@ export const handlePropertiesToast = properties => {
     toastContent,
     autoClose,
     autoCloseTime,
-    id,
   } = properties;
 
   const { title, textColor, backgroundColor, icon } = DEFAULT_TOASTS[type];
@@ -24,7 +23,6 @@ export const handlePropertiesToast = properties => {
   const currentDeleteTime = autoCloseTime * TIMEOUT_SETTING_VALUE;
 
   return {
-    id,
     icon,
     currentTitle,
     currentColor,

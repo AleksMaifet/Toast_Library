@@ -1,10 +1,7 @@
-import { DEFAULT_TIMER, DEFAULT_TITLE } from '@/constants';
-import { handlePropertiesToast } from '@/utils/handlePropertiesToast';
+import { DEFAULT_TIMER } from '@/constants';
 
 const MAX_AVAILABLE_AMOUNT = 2;
 const FIRST_ELEMENT = 1;
-
-const { SUCCESS } = DEFAULT_TITLE;
 
 class ToastManager {
   static singleton;
@@ -23,12 +20,10 @@ class ToastManager {
 
   createToast({ toastType, ...properties }) {
     const id = new Date().getTime().toString();
-    const type = toastType || SUCCESS;
-    this.toast = handlePropertiesToast({
+    this.toast = {
       id,
-      type,
       ...properties,
-    });
+    };
     this.addToast();
   }
 

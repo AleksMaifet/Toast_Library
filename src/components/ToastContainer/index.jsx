@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 import { ErrorBoundary } from '@/components/ErrorBoundary';
 import Provider, { ToastContext } from '@/components/Provider';
@@ -32,4 +32,4 @@ const ToastContainer = () => {
   );
 };
 
-export default ToastContainer;
+export default memo(ToastContainer);
