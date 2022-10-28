@@ -3,12 +3,12 @@ import React from 'react';
 import ToastExample from '@/components/ToastExample';
 import {
   DEFAULT_TIMER,
-  DEFAULT_TITLE,
+  DEFAULT_TYPE,
   TOAST_ANIMATION,
   TOAST_POSITION,
 } from '@/constants';
 
-const { SUCCESS, ERROR, INFO, WARNING } = DEFAULT_TITLE;
+const { SUCCESS, ERROR, INFO, WARNING } = DEFAULT_TYPE;
 const { TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, BOTTOM_RIGHT } = TOAST_POSITION;
 const { TOP, BOTTOM, LEFT, RIGHT } = TOAST_ANIMATION;
 

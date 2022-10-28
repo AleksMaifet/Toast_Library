@@ -1,6 +1,7 @@
 {
   "name": "@AleksMaifet/Toast_Library",
-  "version": "0.0.3",
+  "homepage": "https://AleksMaifet.github.io/Toast_Library",
+  "version": "0.0.4",
   "main": "dist/bundle.js",
   "module": "dist/bundle.esm.js",
   "files": [
@@ -12,7 +13,9 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "eslint:test": "eslint src --ext .js,.jsx",
-    "eslint:fix": "eslint --fix src --ext .js,.jsx"
+    "eslint:fix": "eslint --fix src --ext .js,.jsx",
+    "predeploy": "yarn build-storybook",
+    "deploy": "gh-pages -d storybook-static"
   },
   "devDependencies": {
     "@babel/core": "^7.19.6",
@@ -46,6 +49,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.31.10",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "gh-pages": "^4.0.0",
     "prettier": "^2.7.1",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",

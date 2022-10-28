@@ -20,14 +20,14 @@ export const TOAST_ANIMATION = {
   LEFT: 'Left',
 };
 
-export const DEFAULT_TITLE = {
+export const DEFAULT_TYPE = {
   SUCCESS: 'Success',
   WARNING: 'Warning',
   INFO: 'Info',
   ERROR: 'Error',
 };
 
-const { SUCCESS, ERROR, INFO, WARNING } = DEFAULT_TITLE;
+const { SUCCESS, ERROR, INFO, WARNING } = DEFAULT_TYPE;
 
 const { white, green, black, yellow, pink, error } = theme.Colors;
 

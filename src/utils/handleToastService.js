@@ -1,7 +1,7 @@
-import { DEFAULT_TITLE } from '@/constants';
+import { DEFAULT_TYPE } from '@/constants';
 import { handlePropertiesToast, toastManager } from '@/utils';
 
-const { SUCCESS } = DEFAULT_TITLE;
+const { SUCCESS } = DEFAULT_TYPE;
 
 export const handleToastService = ({ toastType, ...options }) => {
   const type = toastType || SUCCESS;
