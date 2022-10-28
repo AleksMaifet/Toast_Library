@@ -5,15 +5,19 @@ import { ExampleButton, ExampleWrapperButton } from '@/components/ToastExample/s
 import { EXAMPLE_BUTTON_TITLE } from '@/constants';
 import { toastManager } from '@/utils';
 
-const ToastExample = ({ toastType, ...properties }) => (
-  <>
-    <ToastContainer />
-    <ExampleWrapperButton>
-      <ExampleButton onClick={() => toastManager.createToast(toastType, properties)}>
-        {EXAMPLE_BUTTON_TITLE}
-      </ExampleButton>
-    </ExampleWrapperButton>
-  </>
-);
+const ToastExample = properties => {
+  const onClick = () => {
+    toastManager.createToast(properties);
+  };
+
+  return (
+    <>
+      <ToastContainer />
+      <ExampleWrapperButton>
+        <ExampleButton onClick={onClick}>{EXAMPLE_BUTTON_TITLE}</ExampleButton>
+      </ExampleWrapperButton>
+    </>
+  );
+};
 
 export default ToastExample;

@@ -1,5 +1,6 @@
 import React, { createContext, memo, useEffect, useMemo, useState } from 'react';
 
+import Portal from '@/components/Portal';
 import { types } from '@/components/Provider/types';
 import { ACTION } from '@/constants';
 import { toastManager } from '@/utils';
@@ -34,7 +35,11 @@ const Provider = ({ children }) => {
     [toastList],
   );
 
-  return <ToastContext.Provider value={value}>{children}</ToastContext.Provider>;
+  return (
+    <Portal>
+      <ToastContext.Provider value={value}>{children}</ToastContext.Provider>
+    </Portal>
+  );
 };
 
 export default memo(Provider);

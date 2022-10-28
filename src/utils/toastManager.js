@@ -1,8 +1,10 @@
-import { DEFAULT_TIMER } from '@/constants';
+import { DEFAULT_TIMER, DEFAULT_TITLE } from '@/constants';
 import { handlePropertiesToast } from '@/utils/handlePropertiesToast';
 
 const MAX_AVAILABLE_AMOUNT = 2;
 const FIRST_ELEMENT = 1;
+
+const { SUCCESS } = DEFAULT_TITLE;
 
 class ToastManager {
   static singleton;
@@ -19,13 +21,15 @@ class ToastManager {
     this.timerId = null;
   }
 
-  createToast(toastType, properties) {
-    this.toast = handlePropertiesToast(toastType, properties);
+  createToast({ toastType, ...properties }) {
+    const id = new Date().getTime().toString();
+    const type = toastType || SUCCESS;
+    this.toast = handlePropertiesToast({
+      id,
+      type,
+      ...properties,
+    });
     this.addToast();
-    const { currentDeleteTime = DEFAULT_TIMER, autoClose } = this.toast;
-    if (autoClose) {
-      this.autoRemoveToast(currentDeleteTime);
-    }
   }
 
   addToast() {
@@ -33,6 +37,10 @@ class ToastManager {
       return;
     }
     this.toastList = [...this.toastList, this.toast];
+    const { currentDeleteTime = DEFAULT_TIMER, autoClose } = this.toast;
+    if (autoClose) {
+      this.autoRemoveToast(currentDeleteTime);
+    }
     this.worker();
   }
 

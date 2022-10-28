@@ -19,7 +19,7 @@ export default {
     toastType: {
       control: {
         type: 'inline-radio',
-        options: [ERROR, WARNING, SUCCESS, INFO],
+        options: [SUCCESS, ERROR, WARNING, INFO],
       },
     },
     toastColor: {
@@ -73,7 +73,6 @@ const Template = arg => <ToastExample {...arg} />;
 export const ToastTemplate = Template.bind({});
 
 ToastTemplate.args = {
-  toastType: SUCCESS,
   toastTitle: '',
   toastContent: '',
   toastColor: '',

@@ -2,12 +2,9 @@ import { DEFAULT_TOASTS } from '@/constants';
 
 const TIMEOUT_SETTING_VALUE = 1000;
 
-export const handlePropertiesToast = (toastType, properties) => {
-  const id = new Date().getTime().toString();
-
-  const { title, textColor, backgroundColor, icon } = DEFAULT_TOASTS[toastType];
-
+export const handlePropertiesToast = properties => {
   const {
+    type,
     toastTitle,
     toastColor,
     toastBackgroundColor,
@@ -16,7 +13,10 @@ export const handlePropertiesToast = (toastType, properties) => {
     toastContent,
     autoClose,
     autoCloseTime,
+    id,
   } = properties;
+
+  const { title, textColor, backgroundColor, icon } = DEFAULT_TOASTS[type];
 
   const currentTitle = toastTitle || title;
   const currentColor = toastColor || textColor;
