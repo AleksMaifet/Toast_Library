@@ -8,8 +8,8 @@ import { WrapperToast } from '@/components/ToastContainer/styles';
 import GlobalStyles from '@/globalStyles';
 
 const ToastContainer = () => {
-  const handleRemoveToastHelper = cb => id => () => {
-    cb(id);
+  const handleRemoveToastHelper = callback => id => () => {
+    callback(id);
   };
 
   return (
@@ -18,8 +18,8 @@ const ToastContainer = () => {
         <Provider>
           <ToastContext.Consumer>
             {({ toastList, handleRemoveToast }) =>
-              toastList.map(({ id, ...info }) => (
-                <WrapperToast key={id} position={info.position}>
+              toastList.map(({ id, position, ...info }) => (
+                <WrapperToast key={id} position={position}>
                   <Toast
                     value={info}
                     onCloseToast={handleRemoveToastHelper(handleRemoveToast)(id)}

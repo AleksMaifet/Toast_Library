@@ -1,3 +1,4 @@
+import { DEFAULT_TIMER } from '@/constants';
 import { handlePropertiesToast } from '@/utils/handlePropertiesToast';
 
 const MAX_AVAILABLE_AMOUNT = 2;
@@ -21,7 +22,7 @@ class ToastManager {
   createToast(toastType, properties) {
     this.toast = handlePropertiesToast(toastType, properties);
     this.addToast();
-    const { currentDeleteTime, autoClose } = this.toast;
+    const { currentDeleteTime = DEFAULT_TIMER, autoClose } = this.toast;
     if (autoClose) {
       this.autoRemoveToast(currentDeleteTime);
     }

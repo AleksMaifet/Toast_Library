@@ -4,6 +4,22 @@ import IconSuccess from '@/assets/svg/iconSuccess.svg';
 import IconWarning from '@/assets/svg/iconWarning.svg';
 import theme from '@/theme';
 
+export const DEFAULT_TIMER = 2;
+
+export const TOAST_POSITION = {
+  TOP_RIGHT: 'Top-right',
+  TOP_LEFT: 'Top-left',
+  BOTTOM_RIGHT: 'Bottom-right',
+  BOTTOM_LEFT: 'Bottom-left',
+};
+
+export const TOAST_ANIMATION = {
+  TOP: 'Top',
+  BOTTOM: 'Bottom',
+  RIGHT: 'Right',
+  LEFT: 'Left',
+};
+
 export const DEFAULT_TITLE = {
   SUCCESS: 'Success',
   WARNING: 'Warning',

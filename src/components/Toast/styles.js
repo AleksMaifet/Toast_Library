@@ -10,7 +10,7 @@ export const ToastWrapper = styled.main`
   width: ${theme.size.small}px;
   height: ${theme.spaces[11]}px;
   padding: ${theme.spaces[3]}px;
-  border-radius: 7px;
+  border-radius: ${theme.spaces[2]}px;
   background-color: ${({ backgroundColor }) => backgroundColor};
   animation: ${({ animation }) => handleAnimationToast(animation)} 1s;
 
@@ -35,11 +35,6 @@ export const ToastButtonContainer = styled.div`
 export const ToastButtonWrapper = styled.div`
   height: ${theme.spaces[3]}px;
   cursor: pointer;
-  transition: ease 0.3s;
-
-  &:hover {
-    transform: scale(${theme.opacity.opacity50});
-  }
 `;
 
 export const ToastInfo = styled.div`

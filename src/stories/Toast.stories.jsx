@@ -1,7 +1,12 @@
 import React from 'react';
 
 import ToastExample from '@/components/ToastExample';
-import { DEFAULT_TITLE, TOAST_ANIMATION, TOAST_POSITION } from '@/constants';
+import {
+  DEFAULT_TIMER,
+  DEFAULT_TITLE,
+  TOAST_ANIMATION,
+  TOAST_POSITION,
+} from '@/constants';
 
 const { SUCCESS, ERROR, INFO, WARNING } = DEFAULT_TITLE;
 const { TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, BOTTOM_RIGHT } = TOAST_POSITION;
@@ -76,5 +81,5 @@ ToastTemplate.args = {
   animation: TOP,
   position: TOP_LEFT,
   autoClose: false,
-  autoCloseTime: 2,
+  autoCloseTime: DEFAULT_TIMER,
 };
