@@ -1,26 +1,40 @@
-import { DEFAULT_TOASTS } from '@/constants';
+import {
+  DEFAULT_SPACING,
+  DEFAULT_TIMER,
+  DEFAULT_TOAST_ANIMATION,
+  DEFAULT_TOAST_POSITION,
+  DEFAULT_TOAST_TYPE,
+  DEFAULT_TOASTS,
+} from '@/constants';
 
-const TIMEOUT_SETTING_VALUE = 1000;
+const { TOP } = DEFAULT_TOAST_ANIMATION;
+const { TOP_LEFT } = DEFAULT_TOAST_POSITION;
+const { SUCCESS } = DEFAULT_TOAST_TYPE;
 
-export const handlePropertiesToast = properties => {
+const SET_SECONDS_VALUE = 1000;
+
+export const handlePropertiesToast = options => {
   const {
-    type,
-    toastTitle,
-    toastColor,
-    toastBackgroundColor,
-    animation,
-    position,
-    toastContent,
+    type = SUCCESS,
+    label,
+    color,
+    backgroundColor,
+    animation = TOP,
+    position = TOP_LEFT,
+    content,
     autoClose,
-    autoCloseTime,
-  } = properties;
+    autoCloseTime = DEFAULT_TIMER,
+    spacing,
+  } = options;
 
-  const { title, textColor, backgroundColor, icon } = DEFAULT_TOASTS[type];
+  const { defaultLabel, defaultColor, defaultBackgroundColor, icon } =
+    DEFAULT_TOASTS[type];
 
-  const currentTitle = toastTitle || title;
-  const currentColor = toastColor || textColor;
-  const currentBackgroundColor = toastBackgroundColor || backgroundColor;
-  const currentDeleteTime = autoCloseTime * TIMEOUT_SETTING_VALUE;
+  const currentTitle = label || defaultLabel;
+  const currentColor = color || defaultColor;
+  const currentBackgroundColor = backgroundColor || defaultBackgroundColor;
+  const currentAutoCloseTime = autoCloseTime * SET_SECONDS_VALUE;
+  const currentSpacing = spacing || DEFAULT_SPACING;
 
   return {
     icon,
@@ -29,8 +43,9 @@ export const handlePropertiesToast = properties => {
     currentBackgroundColor,
     animation,
     position,
-    toastContent,
+    content,
     autoClose,
-    currentDeleteTime,
+    currentAutoCloseTime,
+    currentSpacing,
   };
 };

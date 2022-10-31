@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import theme from '@/theme';
 import { handleAnimationToast } from '@/utils';
 
-export const ToastWrapper = styled.main`
+export const ToastWrapper = styled.section`
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -38,18 +38,19 @@ export const ToastButtonWrapper = styled.div`
 `;
 
 export const ToastInfo = styled.div`
-  width: ${theme.spaces[11]}%;
-  font-size: ${theme.textStyle.sm}rem;
+  width: ${theme.spaces[10]}%;
   text-transform: uppercase;
-  overflow: hidden;
+  text-align: center;
 `;
 
 export const ToastTitle = styled.h2`
-  font-size: ${theme.textStyle.md}rem;
-  text-align: center;
+  font-size: ${theme.textStyle.sm + 0.5}rem;
+  overflow: hidden;
 `;
 
 export const ToastDescription = styled.p`
-  font-size: ${theme.textStyle.md}rem;
-  text-align: center;
+  font-size: ${theme.textStyle.sm}rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;

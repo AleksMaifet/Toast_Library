@@ -1,25 +1,31 @@
-import { TOAST_POSITION } from '@/constants';
-import theme from '@/theme';
+import { DEFAULT_TOAST_POSITION } from '@/constants';
 
-const { TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, BOTTOM_RIGHT } = TOAST_POSITION;
+const { TOP_RIGHT, BOTTOM_LEFT, BOTTOM_RIGHT } = DEFAULT_TOAST_POSITION;
 
-const toastPosition = {
-  [TOP_LEFT]: {
-    top: `${theme.spaces[2]}%`,
-    left: `${theme.spaces[2]}%`,
-  },
-  [TOP_RIGHT]: {
-    top: `${theme.spaces[2]}%`,
-    right: `${theme.spaces[2]}%`,
-  },
-  [BOTTOM_LEFT]: {
-    bottom: `${theme.spaces[2]}%`,
-    left: `${theme.spaces[2]}%`,
-  },
-  [BOTTOM_RIGHT]: {
-    right: `${theme.spaces[2]}%`,
-    bottom: `${theme.spaces[2]}%`,
-  },
+export const handlePositionToast = ({
+  position,
+  currentSpacing: { top, bottom, left, right },
+}) => {
+  switch (position) {
+    case TOP_RIGHT:
+      return {
+        top: `${top}%`,
+        right: `${right}%`,
+      };
+    case BOTTOM_LEFT:
+      return {
+        bottom: `${bottom}%`,
+        left: `${left}%`,
+      };
+    case BOTTOM_RIGHT:
+      return {
+        right: `${right}%`,
+        bottom: `${bottom}%`,
+      };
+    default:
+      return {
+        top: `${top}%`,
+        left: `${left}%`,
+      };
+  }
 };
-
-export const handlePositionToast = position => toastPosition[position];

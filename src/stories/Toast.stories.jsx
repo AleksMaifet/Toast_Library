@@ -3,41 +3,38 @@ import React from 'react';
 import ToastExample from '@/components/ToastExample';
 import {
   DEFAULT_TIMER,
-  DEFAULT_TYPE,
-  TOAST_ANIMATION,
-  TOAST_POSITION,
+  DEFAULT_TOAST_TYPE,
+  DEFAULT_TOAST_ANIMATION,
+  DEFAULT_TOAST_POSITION,
+  DEFAULT_SPACING,
 } from '@/constants';
-
-const { SUCCESS, ERROR, INFO, WARNING } = DEFAULT_TYPE;
-const { TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, BOTTOM_RIGHT } = TOAST_POSITION;
-const { TOP, BOTTOM, LEFT, RIGHT } = TOAST_ANIMATION;
 
 export default {
   title: 'Toast',
   component: ToastExample,
   argTypes: {
-    toastType: {
+    type: {
       control: {
         type: 'inline-radio',
-        options: [SUCCESS, ERROR, WARNING, INFO],
+        options: Object.values(DEFAULT_TOAST_TYPE),
       },
     },
-    toastColor: {
+    color: {
       control: {
         type: 'color',
       },
     },
-    toastBackgroundColor: {
+    backgroundColor: {
       control: {
         type: 'color',
       },
     },
-    toastTitle: {
+    label: {
       control: {
         type: 'text',
       },
     },
-    toastContent: {
+    content: {
       control: {
         type: 'text',
       },
@@ -45,13 +42,13 @@ export default {
     animation: {
       control: {
         type: 'inline-radio',
-        options: [TOP, BOTTOM, LEFT, RIGHT],
+        options: Object.values(DEFAULT_TOAST_ANIMATION),
       },
     },
     position: {
       control: {
         type: 'inline-radio',
-        options: [TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, BOTTOM_RIGHT],
+        options: Object.values(DEFAULT_TOAST_POSITION),
       },
     },
     autoClose: {
@@ -73,12 +70,6 @@ const Template = arg => <ToastExample {...arg} />;
 export const ToastTemplate = Template.bind({});
 
 ToastTemplate.args = {
-  toastTitle: '',
-  toastContent: '',
-  toastColor: '',
-  toastBackgroundColor: '',
-  animation: TOP,
-  position: TOP_LEFT,
-  autoClose: false,
   autoCloseTime: DEFAULT_TIMER,
+  spacing: DEFAULT_SPACING,
 };

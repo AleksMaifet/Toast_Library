@@ -6,54 +6,61 @@ import theme from '@/theme';
 
 export const DEFAULT_TIMER = 2;
 
-export const TOAST_POSITION = {
+export const DEFAULT_TOAST_POSITION = {
   TOP_RIGHT: 'Top-right',
   TOP_LEFT: 'Top-left',
   BOTTOM_RIGHT: 'Bottom-right',
   BOTTOM_LEFT: 'Bottom-left',
 };
 
-export const TOAST_ANIMATION = {
+export const DEFAULT_TOAST_ANIMATION = {
   TOP: 'Top',
   BOTTOM: 'Bottom',
   RIGHT: 'Right',
   LEFT: 'Left',
 };
 
-export const DEFAULT_TYPE = {
+export const DEFAULT_TOAST_TYPE = {
   SUCCESS: 'Success',
   WARNING: 'Warning',
   INFO: 'Info',
   ERROR: 'Error',
 };
 
-const { SUCCESS, ERROR, INFO, WARNING } = DEFAULT_TYPE;
+const { SUCCESS, ERROR, INFO, WARNING } = DEFAULT_TOAST_TYPE;
 
 const { white, green, black, yellow, pink, error } = theme.Colors;
 
 export const DEFAULT_TOASTS = {
   Success: {
-    title: SUCCESS,
-    textColor: white,
-    backgroundColor: green,
+    defaultLabel: SUCCESS,
+    defaultColor: white,
+    defaultBackgroundColor: green,
     icon: IconSuccess,
   },
   Warning: {
-    title: WARNING,
-    textColor: black,
-    backgroundColor: yellow,
+    defaultLabel: WARNING,
+    defaultColor: black,
+    defaultBackgroundColor: yellow,
     icon: IconWarning,
   },
   Info: {
-    title: INFO,
-    textColor: white,
-    backgroundColor: pink,
+    defaultLabel: INFO,
+    defaultColor: white,
+    defaultBackgroundColor: pink,
     icon: IconInfo,
   },
   Error: {
-    title: ERROR,
-    textColor: white,
-    backgroundColor: error,
+    defaultLabel: ERROR,
+    defaultColor: white,
+    defaultBackgroundColor: error,
     icon: IconError,
   },
+};
+
+export const DEFAULT_SPACING = {
+  top: theme.spaces[2],
+  bottom: theme.spaces[2],
+  left: theme.spaces[2],
+  right: theme.spaces[2],
 };

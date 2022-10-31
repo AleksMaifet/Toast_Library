@@ -1,5 +1,3 @@
-import { DEFAULT_TIMER } from '@/constants';
-
 const MAX_AVAILABLE_AMOUNT = 2;
 const FIRST_ELEMENT = 1;
 
@@ -18,13 +16,12 @@ class ToastManager {
     this.timerId = null;
   }
 
-  createToast({ toastType, ...properties }) {
+  createToast(properties) {
     const id = new Date().getTime().toString();
     this.toast = {
       id,
       ...properties,
     };
-    this.addToast();
   }
 
   addToast() {
@@ -32,9 +29,9 @@ class ToastManager {
       return;
     }
     this.toastList = [...this.toastList, this.toast];
-    const { currentDeleteTime = DEFAULT_TIMER, autoClose } = this.toast;
+    const { currentAutoCloseTime, autoClose } = this.toast;
     if (autoClose) {
-      this.autoRemoveToast(currentDeleteTime);
+      this.autoRemoveToast(currentAutoCloseTime);
     }
     this.worker();
   }

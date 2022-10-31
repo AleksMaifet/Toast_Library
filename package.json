@@ -1,7 +1,7 @@
 {
   "name": "@AleksMaifet/Toast_Library",
   "homepage": "https://AleksMaifet.github.io/Toast_Library",
-  "version": "0.0.4",
+  "version": "0.0.8",
   "main": "dist/bundle.js",
   "module": "dist/bundle.esm.js",
   "files": [

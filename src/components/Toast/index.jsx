@@ -14,16 +14,18 @@ import {
 import { types } from '@/components/Toast/types';
 import { DRAG_START_EVENT } from '@/constants';
 
-const Toast = ({ value, onCloseToast }) => {
-  const {
+const Toast = ({
+  value: {
     currentTitle,
-    toastContent,
+    content,
     currentColor,
     currentBackgroundColor,
     animation,
     icon,
-  } = value;
-
+    id,
+  },
+  onCloseToast,
+}) => {
   const handleDrag = e => {
     let startPosition;
     const {
@@ -34,8 +36,12 @@ const Toast = ({ value, onCloseToast }) => {
       startPosition = pageX;
     }
     if (pageX !== startPosition) {
-      onCloseToast();
+      onCloseToast(id);
     }
+  };
+
+  const onClickCloseToast = () => {
+    onCloseToast(id);
   };
 
   return (
@@ -52,11 +58,11 @@ const Toast = ({ value, onCloseToast }) => {
       </ToastIconWrapper>
       <ToastInfo>
         <ToastTitle>{currentTitle}</ToastTitle>
-        {toastContent && <ToastDescription>{toastContent}</ToastDescription>}
+        {content && <ToastDescription>{content}</ToastDescription>}
       </ToastInfo>
       <ToastButtonContainer>
         <ToastButtonWrapper>
-          <IconClose onClick={onCloseToast} />
+          <IconClose onClick={onClickCloseToast} />
         </ToastButtonWrapper>
       </ToastButtonContainer>
     </ToastWrapper>

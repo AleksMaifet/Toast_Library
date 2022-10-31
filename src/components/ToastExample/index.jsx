@@ -5,9 +5,9 @@ import { ExampleButton, ExampleWrapperButton } from '@/components/ToastExample/s
 import { EXAMPLE_BUTTON_TITLE } from '@/constants';
 import { handleToastService } from '@/utils';
 
-const ToastExample = properties => {
+const ToastExample = options => {
   const onClick = () => {
-    handleToastService(properties);
+    handleToastService(options);
   };
 
   return (

@@ -5,7 +5,7 @@ import { types } from '@/components/Provider/types';
 import { ACTION } from '@/constants';
 import { toastManager } from '@/utils';
 
-export const ToastContext = createContext({});
+export const ToastContext = createContext(null);
 
 const Provider = ({ children }) => {
   const [toastList, setToastList] = useState([]);
