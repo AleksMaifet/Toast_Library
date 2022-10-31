@@ -5,7 +5,7 @@ import { types } from '@/components/Provider/types';
 import { ACTION } from '@/constants';
 import { toastManager } from '@/utils';
 
-export const ToastContext = createContext(null);
+export const ToastContext = createContext({});
 
 const Provider = ({ children }) => {
   const [toastList, setToastList] = useState([]);
@@ -20,11 +20,6 @@ const Provider = ({ children }) => {
 
   useEffect(() => {
     toastManager.watcher(ACTION, handleToastList);
-    return () => {
-      if (!toastManager.toastList.length) {
-        clearInterval(toastManager.timerId);
-      }
-    };
   });
 
   const value = useMemo(

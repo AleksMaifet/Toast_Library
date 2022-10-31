@@ -1,5 +1,4 @@
 const MAX_AVAILABLE_AMOUNT = 2;
-const FIRST_ELEMENT = 1;
 
 class ToastManager {
   static singleton;
@@ -13,7 +12,6 @@ class ToastManager {
     this.toastList = [];
     this.toast = null;
     this.subscriber = new Map();
-    this.timerId = null;
   }
 
   createToast(properties) {
@@ -29,25 +27,20 @@ class ToastManager {
       return;
     }
     this.toastList = [...this.toastList, this.toast];
-    const { currentAutoCloseTime, autoClose } = this.toast;
+    const { currentAutoCloseTime, autoClose, id } = this.toast;
     if (autoClose) {
-      this.autoRemoveToast(currentAutoCloseTime);
+      this.autoRemoveToast(id, currentAutoCloseTime);
     }
     this.worker();
   }
 
   removeToast(toastId) {
-    if (!toastId) {
-      this.toastList = this.toastList.slice(FIRST_ELEMENT);
-    } else {
-      this.toastList = this.toastList.filter(({ id }) => id !== toastId);
-    }
+    this.toastList = this.toastList.filter(({ id }) => id !== toastId);
     this.worker();
   }
 
-  autoRemoveToast(delay) {
-    clearInterval(this.timerId);
-    this.timerId = setInterval(() => this.removeToast(), delay);
+  autoRemoveToast(id, delay) {
+    setTimeout(() => this.removeToast(id), delay);
   }
 
   worker() {
