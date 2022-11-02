@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react';
 
 import ReactDOM from 'react-dom';
 
-import { types } from '@/components/Portal/types';
 import { ID_PORTAL_TITLE } from '@/constants';
+
+import { types } from './types';
 
 const handleSetPortal = () => {
   const portal = document.createElement('div');

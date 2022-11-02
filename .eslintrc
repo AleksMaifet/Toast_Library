@@ -67,39 +67,43 @@
       }
     ],
     "import/prefer-default-export": "off",
-//    "import/order": [
-//      "error",
-//      {
-//        "newlines-between": "always",
-//        "pathGroupsExcludedImportTypes": [
-//          "react"
-//        ],
-//        "alphabetize": {
-//          "order": "asc",
-//          "caseInsensitive": true
-//        },
-//        "groups": [
-//          "builtin",
-//          "external",
-//          "internal",
-//          "parent",
-//          "sibling",
-//          "index"
-//        ],
-//        "pathGroups": [
-//          {
-//            "pattern": "react",
-//            "group": "external",
-//            "position": "before"
-//          },
-//          {
-//            "pattern": "@/**",
-//            "group": "internal",
-//            "position": "before"
-//          }
-//        ]
-//      }
-//    ],
+    "import/order": [
+      "error",
+      {
+        "newlines-between": "always",
+        "pathGroupsExcludedImportTypes": [
+          "react"
+        ],
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        },
+        "groups": [
+          "builtin",
+          "external",
+          "parent",
+          "sibling",
+          "index"
+        ],
+        "pathGroups": [
+          {
+            "pattern": "react",
+            "group": "external",
+            "position": "before"
+          },
+          {
+            "pattern": "@",
+            "group": "internal",
+            "position": "after"
+          },
+          {
+            "pattern": "./**",
+            "group": "internal",
+            "position": "after"
+          }
+        ]
+      }
+    ],
     "import/no-extraneous-dependencies": [
       "error",
       {

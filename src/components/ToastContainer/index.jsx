@@ -1,39 +1,27 @@
-import React, { memo } from 'react';
+import React from 'react';
 
-import { ErrorBoundary } from '@/components/ErrorBoundary';
-import Provider from '@/components/Provider';
-import Toast from '@/components/Toast';
-import { WrapperToast } from '@/components/ToastContainer/styles';
-import GlobalStyles from '@/globalStyles';
 import { ToastContext } from '@/components/Provider/context';
+import Toast from '@/components/Toast';
 
-export const ToastContainer = () => (
-  <ErrorBoundary>
-    <GlobalStyles />
-    <Provider>
-      <ToastContext.Consumer>
-        {({ toastList, handleRemoveToast }) =>
-          toastList.map(({ id, position, currentSpacing, ...info }) => (
-            <WrapperToast
-              key={id}
-              position={{
-                position,
-                currentSpacing,
-              }}
-            >
-              <Toast
-                value={{
-                  id,
-                  ...info,
-                }}
-                onCloseToast={handleRemoveToast}
-              />
-            </WrapperToast>
-          ))
-        }
-      </ToastContext.Consumer>
-    </Provider>
-  </ErrorBoundary>
+import { WrapperToast } from './styles';
+
+const ToastContainer = ({ position }) => (
+  <ToastContext.Consumer>
+    {({ toastList, handleRemoveToast }) => (
+      <WrapperToast position={position}>
+        {toastList.map(({ id, ...info }) => (
+          <Toast
+            key={id}
+            value={{
+              id,
+              ...info,
+            }}
+            onCloseToast={handleRemoveToast}
+          />
+        ))}
+      </WrapperToast>
+    )}
+  </ToastContext.Consumer>
 );
 
-export default memo(ToastContainer);
+export default ToastContainer;

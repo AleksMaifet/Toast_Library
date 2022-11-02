@@ -4,4 +4,4 @@ export {
   DEFAULT_TOAST_ANIMATION,
   DEFAULT_TOAST_POSITION,
 } from '@/constants';
-export * from '@/components/ToastContainer';
+export * from '@/components/ToastService';

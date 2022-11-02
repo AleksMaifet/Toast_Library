@@ -10,6 +10,7 @@ class ToastManager {
     ToastManager.singleton = this;
 
     this.toastList = [];
+    this.toastQueue = [];
     this.toast = null;
     this.subscriber = new Map();
   }
@@ -24,9 +25,10 @@ class ToastManager {
 
   addToast() {
     if (this.toastList.length > MAX_AVAILABLE_AMOUNT_TOAST) {
-      return;
+      this.toastQueue = [...this.toastQueue, this.toast];
+    } else {
+      this.toastList = [...this.toastList, this.toast];
     }
-    this.toastList = [...this.toastList, this.toast];
     const { currentAutoCloseTime, autoClose, id } = this.toast;
     if (autoClose) {
       this.autoRemoveToast(id, currentAutoCloseTime);
@@ -36,6 +38,9 @@ class ToastManager {
 
   removeToast(toastId) {
     this.toastList = this.toastList.filter(({ id }) => id !== toastId);
+    if (this.toastQueue.length) {
+      this.toastList = [...this.toastList, this.toastQueue.shift()];
+    }
     this.workerCallAction();
   }
 

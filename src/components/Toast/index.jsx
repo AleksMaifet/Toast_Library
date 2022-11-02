@@ -2,6 +2,8 @@ import React, { memo } from 'react';
 
 import IconClose from '@/assets/svg/iconClose.svg';
 import Icon from '@/components/Icon';
+import { DRAG_START_EVENT } from '@/constants';
+
 import {
   ToastButtonContainer,
   ToastButtonWrapper,
@@ -10,9 +12,8 @@ import {
   ToastInfo,
   ToastTitle,
   ToastWrapper,
-} from '@/components/Toast/styles';
-import { types } from '@/components/Toast/types';
-import { DRAG_START_EVENT } from '@/constants';
+} from './styles';
+import { types } from './types';
 
 const Toast = ({
   value: {

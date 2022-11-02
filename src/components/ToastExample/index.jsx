@@ -1,18 +1,26 @@
 import React from 'react';
 
-import ToastContainer from '@/components/ToastContainer';
-import { ExampleButton, ExampleWrapperButton } from '@/components/ToastExample/styles';
+import ToastService from '@/components/ToastService';
 import { EXAMPLE_BUTTON_TITLE } from '@/constants';
 import { handleToastService } from '@/utils';
 
+import { ExampleButton, ExampleWrapperButton } from './styles';
+
 const ToastExample = ({ options }) => {
+  const { position, spacing, ...info } = options;
+
   const onClickSetToastService = () => {
-    handleToastService(options);
+    handleToastService(info);
   };
 
   return (
     <>
-      <ToastContainer />
+      <ToastService
+        position={{
+          position,
+          spacing,
+        }}
+      />
       <ExampleWrapperButton>
         <ExampleButton onClick={onClickSetToastService}>
           {EXAMPLE_BUTTON_TITLE}

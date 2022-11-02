@@ -1,10 +1,10 @@
-import React, { memo, useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 
-import Portal from '@/components/Portal';
-import { types } from '@/components/Provider/types';
 import { ACTION } from '@/constants';
 import { toastManager } from '@/utils';
-import { ToastContext } from '@/components/Provider/context';
+
+import { ToastContext } from './context';
+import { types } from './types';
 
 const Provider = ({ children }) => {
   const [toastList, setToastList] = useState([]);
@@ -29,13 +29,9 @@ const Provider = ({ children }) => {
     [toastList],
   );
 
-  return (
-    <Portal>
-      <ToastContext.Provider value={value}>{children}</ToastContext.Provider>
-    </Portal>
-  );
+  return <ToastContext.Provider value={value}>{children}</ToastContext.Provider>;
 };
 
-export default memo(Provider);
+export default Provider;
 
 Provider.propTypes = types;

@@ -2,8 +2,9 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 
-import { ErrorContainer, ErrorText } from '@/components/ErrorBoundary/styles';
 import { ERROR_TITLE } from '@/constants';
+
+import { ErrorContainer, ErrorText } from './styles';
 
 export class ErrorBoundary extends React.Component {
   constructor(props) {

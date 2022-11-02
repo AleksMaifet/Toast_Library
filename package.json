@@ -1,7 +1,7 @@
 {
   "name": "@aleksmaifet/toast_library",
   "homepage": "https://AleksMaifet.github.io/Toast_Library",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "publishConfig": {
     "access": "public",
     "@AleksMaifet:registry": "https://npm.pkg.github.com"
