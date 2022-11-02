@@ -6,7 +6,7 @@ import Provider from '@/components/Provider';
 import ToastContainer from '@/components/ToastContainer';
 import GlobalStyles from '@/globalStyles';
 
-const ToastService = ({ position }) => (
+export const ToastService = memo(({ position }) => (
   <ErrorBoundary>
     <Portal>
       <Provider>
@@ -15,6 +15,4 @@ const ToastService = ({ position }) => (
       </Provider>
     </Portal>
   </ErrorBoundary>
-);
-
-export default memo(ToastService);
+));

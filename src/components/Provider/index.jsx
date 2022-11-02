@@ -19,6 +19,11 @@ const Provider = ({ children }) => {
 
   useEffect(() => {
     toastManager.watcherAction(ACTION, handleToastList);
+    return () => {
+      if (!toastManager.idToastAutoCloseQueue.length) {
+        clearInterval(toastManager.timerId);
+      }
+    };
   });
 
   const value = useMemo(

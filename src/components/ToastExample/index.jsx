@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ToastService from '@/components/ToastService';
+import { ToastService } from '@/components/ToastService';
 import { EXAMPLE_BUTTON_TITLE } from '@/constants';
 import { handleToastService } from '@/utils';
 
