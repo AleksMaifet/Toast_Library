@@ -1,12 +1,13 @@
 import React, { memo } from 'react';
 
 import { ErrorBoundary } from '@/components/ErrorBoundary';
-import Provider, { ToastContext } from '@/components/Provider';
+import Provider from '@/components/Provider';
 import Toast from '@/components/Toast';
 import { WrapperToast } from '@/components/ToastContainer/styles';
 import GlobalStyles from '@/globalStyles';
+import { ToastContext } from '@/components/Provider/context';
 
-const ToastContainer = () => (
+export const ToastContainer = () => (
   <ErrorBoundary>
     <GlobalStyles />
     <Provider>

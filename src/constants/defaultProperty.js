@@ -5,6 +5,8 @@ import IconWarning from '@/assets/svg/iconWarning.svg';
 import theme from '@/theme';
 
 export const DEFAULT_TIMER = 2;
+export const SET_SECONDS_VALUE = 1000;
+export const MAX_AVAILABLE_AMOUNT_TOAST = 2;
 
 export const DEFAULT_TOAST_POSITION = {
   TOP_RIGHT: 'Top-right',

@@ -1,4 +1,4 @@
-const MAX_AVAILABLE_AMOUNT = 2;
+import { MAX_AVAILABLE_AMOUNT_TOAST } from '@/constants';
 
 class ToastManager {
   static singleton;
@@ -23,7 +23,7 @@ class ToastManager {
   }
 
   addToast() {
-    if (this.toastList.length > MAX_AVAILABLE_AMOUNT) {
+    if (this.toastList.length > MAX_AVAILABLE_AMOUNT_TOAST) {
       return;
     }
     this.toastList = [...this.toastList, this.toast];
@@ -31,25 +31,25 @@ class ToastManager {
     if (autoClose) {
       this.autoRemoveToast(id, currentAutoCloseTime);
     }
-    this.worker();
+    this.workerCallAction();
   }
 
   removeToast(toastId) {
     this.toastList = this.toastList.filter(({ id }) => id !== toastId);
-    this.worker();
+    this.workerCallAction();
   }
 
   autoRemoveToast(id, delay) {
     setTimeout(() => this.removeToast(id), delay);
   }
 
-  worker() {
+  workerCallAction() {
     this.subscriber.forEach(callback => {
       callback(this.toastList);
     });
   }
 
-  watcher(action, callback) {
+  watcherAction(action, callback) {
     if (!this.subscriber.has(action)) {
       this.subscriber.set(action, callback);
     }

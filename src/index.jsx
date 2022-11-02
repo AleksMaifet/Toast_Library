@@ -1,15 +1,7 @@
-import ToastContainer from '@/components/ToastContainer';
-import {
+export { handleToastService } from '@/utils';
+export {
   DEFAULT_TOAST_TYPE,
   DEFAULT_TOAST_ANIMATION,
   DEFAULT_TOAST_POSITION,
 } from '@/constants';
-import { handleToastService } from '@/utils';
-
-export {
-  ToastContainer,
-  handleToastService,
-  DEFAULT_TOAST_TYPE,
-  DEFAULT_TOAST_ANIMATION,
-  DEFAULT_TOAST_POSITION,
-};
+export * from '@/components/ToastContainer';

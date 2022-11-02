@@ -1,11 +1,10 @@
-import React, { createContext, memo, useEffect, useMemo, useState } from 'react';
+import React, { memo, useEffect, useMemo, useState } from 'react';
 
 import Portal from '@/components/Portal';
 import { types } from '@/components/Provider/types';
 import { ACTION } from '@/constants';
 import { toastManager } from '@/utils';
-
-export const ToastContext = createContext({});
+import { ToastContext } from '@/components/Provider/context';
 
 const Provider = ({ children }) => {
   const [toastList, setToastList] = useState([]);
@@ -19,7 +18,7 @@ const Provider = ({ children }) => {
   };
 
   useEffect(() => {
-    toastManager.watcher(ACTION, handleToastList);
+    toastManager.watcherAction(ACTION, handleToastList);
   });
 
   const value = useMemo(

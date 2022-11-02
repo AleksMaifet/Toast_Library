@@ -5,8 +5,8 @@ import { ExampleButton, ExampleWrapperButton } from '@/components/ToastExample/s
 import { EXAMPLE_BUTTON_TITLE } from '@/constants';
 import { handleToastService } from '@/utils';
 
-const ToastExample = options => {
-  const onClick = () => {
+const ToastExample = ({ options }) => {
+  const onClickSetToastService = () => {
     handleToastService(options);
   };
 
@@ -14,7 +14,9 @@ const ToastExample = options => {
     <>
       <ToastContainer />
       <ExampleWrapperButton>
-        <ExampleButton onClick={onClick}>{EXAMPLE_BUTTON_TITLE}</ExampleButton>
+        <ExampleButton onClick={onClickSetToastService}>
+          {EXAMPLE_BUTTON_TITLE}
+        </ExampleButton>
       </ExampleWrapperButton>
     </>
   );

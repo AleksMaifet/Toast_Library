@@ -64,8 +64,7 @@ export default {
   },
 };
 
-// eslint-disable-next-line
-const Template = arg => <ToastExample {...arg} />;
+const Template = arg => <ToastExample options={arg} />;
 
 export const ToastTemplate = Template.bind({});
 

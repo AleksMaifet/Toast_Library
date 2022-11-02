@@ -5,14 +5,14 @@ import ReactDOM from 'react-dom';
 import { types } from '@/components/Portal/types';
 import { ID_PORTAL_TITLE } from '@/constants';
 
-const createPortal = () => {
+const handleSetPortal = () => {
   const portal = document.createElement('div');
   portal.setAttribute('id', ID_PORTAL_TITLE);
   return portal;
 };
 
 const Portal = ({ children }) => {
-  const [container, _] = useState(() => createPortal());
+  const [container, _] = useState(() => handleSetPortal());
 
   useEffect(() => {
     document.body.appendChild(container);

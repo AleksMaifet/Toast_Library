@@ -5,13 +5,12 @@ import {
   DEFAULT_TOAST_POSITION,
   DEFAULT_TOAST_TYPE,
   DEFAULT_TOASTS,
+  SET_SECONDS_VALUE,
 } from '@/constants';
 
 const { TOP } = DEFAULT_TOAST_ANIMATION;
 const { TOP_LEFT } = DEFAULT_TOAST_POSITION;
 const { SUCCESS } = DEFAULT_TOAST_TYPE;
-
-const SET_SECONDS_VALUE = 1000;
 
 export const handlePropertiesToast = options => {
   const {
