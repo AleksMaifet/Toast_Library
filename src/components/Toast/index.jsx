@@ -29,13 +29,16 @@ const Toast = ({
 }) => {
   const handleDrag = e => {
     let startPosition;
+
     const {
       pageX,
       nativeEvent: { type },
     } = e;
+
     if (type.includes(DRAG_START_EVENT)) {
       startPosition = pageX;
     }
+
     if (pageX !== startPosition) {
       onCloseToast(id);
     }
