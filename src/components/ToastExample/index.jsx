@@ -15,12 +15,7 @@ const ToastExample = ({ options }) => {
 
   return (
     <>
-      <ToastService
-        position={{
-          position,
-          spacing,
-        }}
-      />
+      <ToastService position={position} spacing={spacing} />
       <ExampleWrapperButton>
         <ExampleButton onClick={onClickSetToastService}>
           {EXAMPLE_BUTTON_TITLE}

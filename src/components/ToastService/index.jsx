@@ -6,13 +6,17 @@ import Provider from '@/components/Provider';
 import ToastContainer from '@/components/ToastContainer';
 import GlobalStyles from '@/globalStyles';
 
-export const ToastService = memo(({ position }) => (
+import { types } from './types';
+
+export const ToastService = memo(({ position, spacing }) => (
   <ErrorBoundary>
     <Portal>
       <Provider>
         <GlobalStyles />
-        <ToastContainer position={position} />
+        <ToastContainer position={position} spacing={spacing} />
       </Provider>
     </Portal>
   </ErrorBoundary>
 ));
+
+ToastService.propTypes = types;

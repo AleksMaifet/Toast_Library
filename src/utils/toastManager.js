@@ -11,7 +11,7 @@ class ToastManager {
 
     this.toastList = [];
     this.toast = null;
-    this.toastListQueue = [];
+    this.extraToastList = [];
     this.idToastAutoCloseQueue = [];
     this.subscriber = new Map();
     this.timerId = null;
@@ -27,27 +27,31 @@ class ToastManager {
 
   addToast() {
     if (this.toastList.length > MAX_AVAILABLE_AMOUNT_TOAST) {
-      this.toastListQueue = [...this.toastListQueue, this.toast];
+      this.extraToastList = [...this.extraToastList, this.toast];
     } else {
       this.toastList = [...this.toastList, this.toast];
     }
     const { currentAutoCloseTime, autoClose, id } = this.toast;
     if (autoClose) {
       this.idToastAutoCloseQueue = [...this.idToastAutoCloseQueue, id];
-      this.autoRemoveToast(id, currentAutoCloseTime);
+      this.autoCloseToast(currentAutoCloseTime);
     }
     this.workerCallAction();
   }
 
   removeToast(toastId) {
     this.toastList = this.toastList.filter(({ id }) => id !== toastId);
-    if (this.toastListQueue.length) {
-      this.toastList = [...this.toastList, this.toastListQueue.shift()];
+    this.extraToastList = this.extraToastList.filter(({ id }) => id !== toastId);
+    if (
+      this.extraToastList.length &&
+      this.toastList.length <= MAX_AVAILABLE_AMOUNT_TOAST
+    ) {
+      this.toastList = [...this.toastList, this.extraToastList.shift()];
     }
     this.workerCallAction();
   }
 
-  autoRemoveToast(id, delay) {
+  autoCloseToast(delay) {
     clearInterval(this.timerId);
     this.timerId = setInterval(
       () => this.removeToast(this.idToastAutoCloseQueue.shift()),
