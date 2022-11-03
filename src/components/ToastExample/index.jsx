@@ -7,10 +7,10 @@ import { handleToastService } from '@/utils';
 import { ExampleButton, ExampleWrapperButton } from './styles';
 
 const ToastExample = ({ options }) => {
-  const { position, spacing, ...info } = options;
+  const { position, spacing, ...properties } = options;
 
   const onClickSetToastService = () => {
-    handleToastService(info);
+    handleToastService(properties);
   };
 
   return (
