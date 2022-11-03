@@ -3,60 +3,64 @@ import { MAX_AVAILABLE_AMOUNT_TOAST } from '@/constants';
 import { handleRemoveToast } from './handleRemoveToast';
 
 class ToastManager {
-  static singleton;
+  static #singleton;
+
+  #extraToastList = [];
+
+  #toast = null;
+
+  #toastList = [];
+
+  #subscriber = new Map();
 
   constructor() {
-    if (ToastManager.singleton) {
-      return ToastManager.singleton;
+    if (ToastManager.#singleton) {
+      return ToastManager.#singleton;
     }
-    ToastManager.singleton = this;
+    ToastManager.#singleton = this;
 
-    this.toastList = [];
-    this.toast = null;
-    this.extraToastList = [];
     this.idToastAutoCloseQueue = [];
-    this.subscriber = new Map();
     this.timerId = null;
   }
 
   createToast(properties) {
     const id = new Date().getTime().toString();
-    this.toast = {
+    this.#toast = {
       id,
       ...properties,
     };
   }
 
   addToast() {
-    if (this.toastList.length > MAX_AVAILABLE_AMOUNT_TOAST) {
-      this.extraToastList = [...this.extraToastList, this.toast];
+    if (this.#toastList.length > MAX_AVAILABLE_AMOUNT_TOAST) {
+      this.#extraToastList = [...this.#extraToastList, this.#toast];
     } else {
-      this.toastList = [...this.toastList, this.toast];
+      this.#toastList = [...this.#toastList, this.#toast];
     }
 
     this.autoCloseToast();
-    this.workerCallAction();
+    this.#workerCallAction();
   }
 
   removeToast(toastId) {
-    this.toastList = handleRemoveToast(this.toastList, toastId);
-    this.extraToastList = handleRemoveToast(this.extraToastList, toastId);
+    this.#toastList = handleRemoveToast(this.#toastList, toastId);
+    this.#extraToastList = handleRemoveToast(this.#extraToastList, toastId);
 
     if (
-      this.extraToastList.length &&
-      this.toastList.length <= MAX_AVAILABLE_AMOUNT_TOAST
+      this.#extraToastList.length &&
+      this.#toastList.length <= MAX_AVAILABLE_AMOUNT_TOAST
     ) {
-      this.toastList = [...this.toastList, this.extraToastList.shift()];
+      this.#toastList = [...this.#toastList, this.#extraToastList.shift()];
     }
 
-    this.workerCallAction();
+    this.#workerCallAction();
   }
 
   autoCloseToast() {
-    const { autoClose } = this.toast;
+    const { autoClose } = this.#toast;
 
     if (autoClose) {
-      const { currentAutoCloseTime, id } = this.toast;
+      const { currentAutoCloseTime, id } = this.#toast;
 
       this.idToastAutoCloseQueue = [...this.idToastAutoCloseQueue, id];
 
@@ -69,15 +73,15 @@ class ToastManager {
     }
   }
 
-  workerCallAction() {
-    this.subscriber.forEach(callback => {
-      callback(this.toastList);
+  #workerCallAction() {
+    this.#subscriber.forEach(callback => {
+      callback(this.#toastList);
     });
   }
 
   watcherAction(action, callback) {
-    if (!this.subscriber.has(action)) {
-      this.subscriber.set(action, callback);
+    if (!this.#subscriber.has(action)) {
+      this.#subscriber.set(action, callback);
     }
   }
 }
