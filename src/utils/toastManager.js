@@ -74,6 +74,9 @@ class ToastManager {
   }
 
   #workerCallAction() {
+    if (!this.#subscriber.size) {
+      return;
+    }
     this.#subscriber.forEach(callback => {
       callback(this.#toastList);
     });
