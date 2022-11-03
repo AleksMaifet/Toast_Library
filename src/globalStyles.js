@@ -9,7 +9,12 @@ export default createGlobalStyle`
 
     & * {
       box-sizing: border-box;
+      margin: 0;
       padding: 0;
+    }
+
+    & > section:not(:last-child) {
+      margin-bottom: ${theme.spaces[2]}px;
     }
   }
 `;
