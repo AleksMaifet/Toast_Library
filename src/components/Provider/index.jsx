@@ -1,41 +1,47 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, {
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+  useMemo,
+  useState,
+} from 'react';
 
-import { ACTION } from '@/constants';
 import { toastManager } from '@/utils';
 
 import { ToastContext } from './context';
 import { types } from './types';
 
-const Provider = ({ children }) => {
+const Provider = forwardRef(({ children }, ref) => {
   const [toastList, setToastList] = useState([]);
 
-  const handleToastList = toastList => {
-    setToastList(toastList);
+  const handleSetToastList = () => {
+    setToastList(toastManager.toastList);
   };
 
-  const handleRemoveToast = id => {
+  const handleCloseToast = id => {
     toastManager.removeToast(id);
   };
 
-  useEffect(() => {
-    toastManager.watcherAction(ACTION, handleToastList);
-    return () => {
-      if (!toastManager.idToastAutoCloseQueue.length) {
-        clearInterval(toastManager.timerId);
-      }
-    };
+  useImperativeHandle(ref, () => ({
+    watcherActionCall: handleSetToastList,
+  }));
+
+  useEffect(() => () => {
+    if (!toastManager.idToastAutoCloseQueue.length) {
+      clearInterval(toastManager.timerId);
+    }
   });
 
   const value = useMemo(
     () => ({
       toastList,
-      handleRemoveToast,
+      handleCloseToast,
     }),
     [toastList],
   );
 
   return <ToastContext.Provider value={value}>{children}</ToastContext.Provider>;
-};
+});
 
 export default Provider;
 

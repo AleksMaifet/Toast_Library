@@ -9,7 +9,7 @@ import { types } from './types';
 
 const ToastContainer = ({ position, spacing }) => (
   <ToastContext.Consumer>
-    {({ toastList, handleRemoveToast }) => (
+    {({ toastList, handleCloseToast }) => (
       <WrapperToast id={ID_PORTAL_TITLE} position={position} spacing={spacing}>
         {toastList.map(({ id, ...info }) => (
           <Toast
@@ -18,7 +18,7 @@ const ToastContainer = ({ position, spacing }) => (
               id,
               ...info,
             }}
-            onCloseToast={handleRemoveToast}
+            onCloseToast={handleCloseToast}
           />
         ))}
       </WrapperToast>

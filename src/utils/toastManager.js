@@ -9,9 +9,9 @@ class ToastManager {
 
   #toast = null;
 
-  #toastList = [];
-
-  #subscriber = new Map();
+  #toastRef = {
+    watcherActionCall: () => {},
+  };
 
   constructor() {
     if (ToastManager.#singleton) {
@@ -19,9 +19,17 @@ class ToastManager {
     }
     ToastManager.#singleton = this;
 
+    this.toastList = [];
     this.idToastAutoCloseQueue = [];
     this.timerId = null;
   }
+
+  init = ref => {
+    if (!ref) {
+      return;
+    }
+    this.#toastRef = ref.current;
+  };
 
   createToast(properties) {
     const id = new Date().getTime().toString();
@@ -32,28 +40,28 @@ class ToastManager {
   }
 
   addToast() {
-    if (this.#toastList.length > MAX_AVAILABLE_AMOUNT_TOAST) {
+    if (this.toastList.length > MAX_AVAILABLE_AMOUNT_TOAST) {
       this.#extraToastList = [...this.#extraToastList, this.#toast];
     } else {
-      this.#toastList = [...this.#toastList, this.#toast];
+      this.toastList = [...this.toastList, this.#toast];
     }
 
     this.autoCloseToast();
-    this.#workerCallAction();
+    this.#toastRef.watcherActionCall();
   }
 
   removeToast(toastId) {
-    this.#toastList = handleRemoveToast(this.#toastList, toastId);
+    this.toastList = handleRemoveToast(this.toastList, toastId);
     this.#extraToastList = handleRemoveToast(this.#extraToastList, toastId);
 
     if (
       this.#extraToastList.length &&
-      this.#toastList.length <= MAX_AVAILABLE_AMOUNT_TOAST
+      this.toastList.length <= MAX_AVAILABLE_AMOUNT_TOAST
     ) {
-      this.#toastList = [...this.#toastList, this.#extraToastList.shift()];
+      this.toastList = [...this.toastList, this.#extraToastList.shift()];
     }
 
-    this.#workerCallAction();
+    this.#toastRef.watcherActionCall();
   }
 
   autoCloseToast() {
@@ -70,21 +78,6 @@ class ToastManager {
         () => this.removeToast(this.idToastAutoCloseQueue.shift()),
         currentAutoCloseTime,
       );
-    }
-  }
-
-  #workerCallAction() {
-    if (!this.#subscriber.size) {
-      return;
-    }
-    this.#subscriber.forEach(callback => {
-      callback(this.#toastList);
-    });
-  }
-
-  watcherAction(action, callback) {
-    if (!this.#subscriber.has(action)) {
-      this.#subscriber.set(action, callback);
     }
   }
 }
