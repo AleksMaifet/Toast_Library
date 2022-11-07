@@ -32,13 +32,13 @@ const Toast = ({
 }) => {
   const onClickCloseToast = () => {
     onCloseToast(id);
-    clearTimeout(toastManager.getAutoCloseTimeId(id));
+    clearTimeout(toastManager.getAutoCloseTimerId(id));
   };
 
   useEffect(() => {
     toastManager.autoCloseToast(id);
 
-    return () => toastManager.removeAutoCloseTimeId(id);
+    return () => toastManager.clearAutoCloseTimerIdList(id);
   }, []);
 
   return (
