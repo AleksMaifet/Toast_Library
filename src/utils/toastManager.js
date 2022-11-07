@@ -1,4 +1,4 @@
-import { MAX_AVAILABLE_AMOUNT_TOAST } from '@/constants';
+import { MAX_AVAILABLE_AMOUNT_TOAST, SET_SECONDS_VALUE } from '@/constants';
 
 import { handleRemoveToast } from './handleRemoveToast';
 
@@ -7,7 +7,11 @@ class ToastManager {
 
   #extraToastList = [];
 
-  #toast = null;
+  #toast;
+
+  #autoCloseTimeIdQueue = new Map();
+
+  #autoCloseId;
 
   #toastRef = {
     watcherActionCall: () => {},
@@ -20,8 +24,6 @@ class ToastManager {
     ToastManager.#singleton = this;
 
     this.toastList = [];
-    this.idToastAutoCloseQueue = [];
-    this.timerId = null;
   }
 
   init = ref => {
@@ -33,6 +35,7 @@ class ToastManager {
 
   createToast(properties) {
     const id = new Date().getTime().toString();
+
     this.#toast = {
       id,
       ...properties,
@@ -46,38 +49,40 @@ class ToastManager {
       this.toastList = [...this.toastList, this.#toast];
     }
 
-    this.autoCloseToast();
     this.#toastRef.watcherActionCall();
   }
 
   removeToast(toastId) {
     this.toastList = handleRemoveToast(this.toastList, toastId);
-    this.#extraToastList = handleRemoveToast(this.#extraToastList, toastId);
 
-    if (
-      this.#extraToastList.length &&
-      this.toastList.length <= MAX_AVAILABLE_AMOUNT_TOAST
-    ) {
+    if (this.#extraToastList.length) {
       this.toastList = [...this.toastList, this.#extraToastList.shift()];
     }
 
     this.#toastRef.watcherActionCall();
   }
 
-  autoCloseToast() {
-    const { autoClose } = this.#toast;
+  autoCloseToast(toastId) {
+    const { autoClose, autoCloseTime } = this.#toast;
 
     if (autoClose) {
-      const { currentAutoCloseTime, id } = this.#toast;
-
-      this.idToastAutoCloseQueue = [...this.idToastAutoCloseQueue, id];
-
-      clearInterval(this.timerId);
-
-      this.timerId = setInterval(
-        () => this.removeToast(this.idToastAutoCloseQueue.shift()),
-        currentAutoCloseTime,
+      this.#autoCloseId = setTimeout(
+        () => this.removeToast(toastId),
+        autoCloseTime * SET_SECONDS_VALUE,
       );
+      this.#autoCloseTimeIdQueue.set(toastId, this.#autoCloseId);
+    }
+  }
+
+  getAutoCloseTimeId(toastId) {
+    if (this.#autoCloseTimeIdQueue.has(toastId)) {
+      return this.#autoCloseTimeIdQueue.get(toastId);
+    }
+  }
+
+  removeAutoCloseTimeId(toastId) {
+    if (this.#autoCloseTimeIdQueue.has(toastId)) {
+      this.#autoCloseTimeIdQueue.delete(toastId);
     }
   }
 }

@@ -3,7 +3,6 @@ import {
   DEFAULT_TOAST_ANIMATION,
   DEFAULT_TOAST_TYPE,
   DEFAULT_TOASTS,
-  SET_SECONDS_VALUE,
 } from '@/constants';
 
 const { TOP } = DEFAULT_TOAST_ANIMATION;
@@ -24,19 +23,18 @@ export const handlePropertiesToast = options => {
   const { defaultLabel, defaultColor, defaultBackgroundColor, icon } =
     DEFAULT_TOASTS[type];
 
-  const currentTitle = label || defaultLabel;
+  const currentLabel = label || defaultLabel;
   const currentColor = color || defaultColor;
   const currentBackgroundColor = backgroundColor || defaultBackgroundColor;
-  const currentAutoCloseTime = autoCloseTime * SET_SECONDS_VALUE;
 
   return {
     icon,
-    currentTitle,
+    currentLabel,
     currentColor,
     currentBackgroundColor,
     animation,
     content,
     autoClose,
-    currentAutoCloseTime,
+    autoCloseTime,
   };
 };

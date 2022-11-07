@@ -7,6 +7,8 @@ export const ToastWrapper = styled.section`
   display: flex;
   justify-content: space-around;
   align-items: center;
+  position: relative;
+  overflow: hidden;
   width: ${theme.size.small}px;
   height: ${theme.spaces[11]}px;
   padding: ${theme.spaces[3]}px;
@@ -53,4 +55,17 @@ export const ToastDescription = styled.p`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+`;
+
+export const ToastProgressBar = styled.div`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: ${theme.spaces[1]}px;
+  background-color: ${theme.Colors.blue};
+  animation: ${theme.progress};
+  animation-duration: ${({ duration }) => duration}s;
+  animation-timing-function: linear;
 `;

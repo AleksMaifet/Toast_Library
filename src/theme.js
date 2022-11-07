@@ -12,6 +12,7 @@ const Colors = {
   pink: '#9A40D3',
   yellow: '#F4E048',
   green: '#37E29A',
+  blue: '#00BFFF',
 };
 
 /// Size
@@ -83,6 +84,15 @@ const rightAnimation = keyframes`
   }
 `;
 
+const progress = keyframes`
+    from {
+      width: 100%;
+    }
+    to {
+      width: 0;
+    }
+`;
+
 export default {
   fontFamily,
   fontSizeBase,
@@ -95,4 +105,5 @@ export default {
   bottomAnimation,
   leftAnimation,
   rightAnimation,
+  progress,
 };
