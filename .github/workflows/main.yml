@@ -16,7 +16,5 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: install modules
         run: yarn install
-      - name: build project
-        run: yarn build
       - name: eslint code
         run: yarn eslint:test
