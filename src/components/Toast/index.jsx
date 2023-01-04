@@ -51,6 +51,10 @@ const Toast = ({
     return () => toastManager.clearAutoCloseTimerIdList(id);
   }, []);
 
+  const handleCloseToast = () => {
+    onCloseToast(id)
+  }
+
   return (
     <ToastContainer
       ref={setNodeRef}
@@ -70,7 +74,7 @@ const Toast = ({
       </ToastWrapper>
       {!active ? (
         <ToastButtonWrapper>
-          <IconClose onClick={() => onCloseToast(id)} />
+          <IconClose onClick={handleCloseToast} />
         </ToastButtonWrapper>
       ) : null}
       {autoClose && <ToastProgressBar duration={autoCloseTime} />}
