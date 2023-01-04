@@ -3,7 +3,7 @@ on:
   push:
     branches: [ master ]
 jobs:
-  init:
+  test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
