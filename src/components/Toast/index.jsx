@@ -52,8 +52,8 @@ const Toast = ({
   }, []);
 
   const handleCloseToast = () => {
-    onCloseToast(id)
-  }
+    onCloseToast(id);
+  };
 
   return (
     <ToastContainer
