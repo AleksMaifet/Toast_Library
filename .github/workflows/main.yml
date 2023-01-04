@@ -1,18 +1,22 @@
-name: Lint
-
-on: [ push ]
-
+name: GitHub Actions
+on:
+  push:
+    branches: [ master ]
 jobs:
-  eslint:
+  init:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [ 18.x ]
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - name: Staring Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
         with:
-          node-version: 18
-      - run: yarn install
-      - uses: sibiraj-s/action-eslint@v2
-        with:
-          eslint-args: '--ignore-path=.gitignore --quiet'
-          extensions: 'js,jsx'
-          annotations: true
+          node-version: ${{ matrix.node-version }}
+      - name: install modules
+        run: yarn install
+      - name: build project
+        run: yarn build
+      - name: eslint code
+        run: yarn eslint:test

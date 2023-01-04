@@ -1,12 +1,16 @@
 import React, { memo, useEffect } from 'react';
 
+import { useDraggable } from '@dnd-kit/core';
+import { CSS } from '@dnd-kit/utilities';
+
 import IconClose from '@/assets/svg/iconClose.svg';
 import Icon from '@/components/Icon';
+import theme from '@/theme';
 import { toastManager } from '@/utils';
 
 import {
-  ToastButtonContainer,
   ToastButtonWrapper,
+  ToastContainer,
   ToastDescription,
   ToastIconWrapper,
   ToastInfo,
@@ -30,9 +34,15 @@ const Toast = ({
   },
   onCloseToast,
 }) => {
-  const onClickCloseToast = () => {
-    onCloseToast(id);
-    clearTimeout(toastManager.getAutoCloseTimerId(id));
+  const { listeners, transform, transition, setNodeRef, isDragging, active } =
+    useDraggable({
+      id,
+    });
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    boxShadow: isDragging && theme.shadowToastDraggable,
   };
 
   useEffect(() => {
@@ -42,27 +52,29 @@ const Toast = ({
   }, []);
 
   return (
-    <ToastWrapper
+    <ToastContainer
+      ref={setNodeRef}
+      style={style}
       backgroundColor={currentBackgroundColor}
       color={currentColor}
       animation={animation}
-      draggable
-      onDragEnd={onClickCloseToast}
     >
-      <ToastIconWrapper>
-        <Icon icon={icon} />
-      </ToastIconWrapper>
-      <ToastInfo>
-        <ToastTitle>{currentLabel}</ToastTitle>
-        {content && <ToastDescription>{content}</ToastDescription>}
-      </ToastInfo>
-      <ToastButtonContainer>
+      <ToastWrapper {...listeners}>
+        <ToastIconWrapper>
+          <Icon icon={icon} />
+        </ToastIconWrapper>
+        <ToastInfo>
+          <ToastTitle>{currentLabel}</ToastTitle>
+          {content && <ToastDescription>{content}</ToastDescription>}
+        </ToastInfo>
+      </ToastWrapper>
+      {!active ? (
         <ToastButtonWrapper>
-          <IconClose onClick={onClickCloseToast} />
+          <IconClose onClick={() => onCloseToast(id)} />
         </ToastButtonWrapper>
-      </ToastButtonContainer>
+      ) : null}
       {autoClose && <ToastProgressBar duration={autoCloseTime} />}
-    </ToastWrapper>
+    </ToastContainer>
   );
 };
 

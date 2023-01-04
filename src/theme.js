@@ -2,6 +2,8 @@ import { keyframes } from 'styled-components';
 
 const fontFamily = 'sans-serif';
 const fontSizeBase = '10px';
+const shadowToastDraggable =
+  '-1px 0 15px 0 rgba(34, 33, 81, 0.01), 0px 15px 15px 0 rgba(34, 33, 81, 0.25)';
 
 /// Colors
 const Colors = {
@@ -85,12 +87,12 @@ const rightAnimation = keyframes`
 `;
 
 const progress = keyframes`
-    from {
-      width: 100%;
-    }
-    to {
-      width: 0;
-    }
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0;
+  }
 `;
 
 export default {
@@ -106,4 +108,5 @@ export default {
   leftAnimation,
   rightAnimation,
   progress,
+  shadowToastDraggable,
 };
