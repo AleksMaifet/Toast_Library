@@ -10,7 +10,7 @@ export const ToastService = memo(({ position, spacing }) => {
   const toastRef = useRef(null);
 
   useLayoutEffect(() => {
-    toastManager.init(toastRef);
+    toastManager.init(toastRef)
   }, []);
 
   return (
